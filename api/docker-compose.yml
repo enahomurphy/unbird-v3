@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  unbird-api:
+    container_name: unbird-api
+    image: node:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment: 
+      DB_HOST: unbird-db
+      DB_PORT: 5432
+      DATABASE_URL: postgres://root:unbird@unbird-db:5432/unbird
+    env_file: .env
+    volumes: 
+      - .:/var/www
+    ports:
+      - "3000:3000"
+    depends_on:
+      - unbird-db
+    networks:
+      - unbird_network
+    command: >
+      sh -c "yarn migrate:up && yarn start:dev" 
+  unbird-db:
+    container_name: unbird-db
+    image: postgres:12.1-alpine
+    environment:
+      POSTGRES_PASSWORD: unbird
+      POSTGRES_USER: root
+      POSTGRES_DB: unbird
+    ports:
+      - "5437:5432"
+    networks:
+      - unbird_network
+  unbird-redis:
+    container_name: unbird-redis
+    image: redis:6.0-rc1-alpine
+    ports:
+      - "6378:6379"
+    networks:
+      - unbird_network
+networks:
+  unbird_network:
+    driver: bridge
