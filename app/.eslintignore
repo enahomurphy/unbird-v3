@@ -1,0 +1,14 @@
+electron-builder.js
+notarize.js
+.eslintrc.js
+src/lib/graphql/types.ts
+./babel.config.js
+scripts
+src/public
+src/resources
+cypress
+node_modules
+.vscode
+dist
+.storybook
+.cache

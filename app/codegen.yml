@@ -1,0 +1,20 @@
+schema: http://localhost:8081/graphql
+documents:
+  - './src/lib/**/graphql/fragments.ts'
+  - './src/**/graphql/mutation/*.ts'
+  - './src/**/graphql/query/*.ts'
+generates:
+  ./src/lib/graphql/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+      - typescript-apollo-client-helpers
+    config:
+      namingConvention:
+        namingConvention:
+          typeNames: camelCase
+          enumValues: upperCase
+      withHOC: false
+      withHooks: true
+      withComponent: false

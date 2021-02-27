@@ -1,0 +1,14 @@
+node_modules
+dist
+.cache
+yarn-*
+.env
+src/stories/*
+.parcel-cache
+
+www/
+dist/
+.envrc
+electron/node_modules
+electron-builder.env
+build

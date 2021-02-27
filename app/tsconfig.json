@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "types": ["react", "jest", "reflect-metadata", "node", "testing-library__jest-dom"],
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "target": "es5",
+    "skipLibCheck": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "module": "esnext",
+    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "paths": {
+      "test-utils": ["./src/lib/testUtils/index.ts"],
+      "scripts": ["./scripts/*"],
+      "components/*": ["./src/components/*"],
+      "domain/*": ["./src/domain/*"],
+      "lib/*": ["./src/lib/*"],
+      "assets/*": [".src/assets/*"],
+      "react-virtualized/List": ["react-virtualized/dist/es/List"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "scripts/**/*",
+    "jest.config.js",
+    "babel.config.js",
+    "./scripts/*",
+    "./src/**/__tests__/*.spec.tsx"
+  ],
+  "exclude": [
+    "cypress",
+    "node_modules",
+    "./src/**/*.spec.ts",
+    "src/lib/graphql/types.ts",
+    "node_modules/msw/lib/types/utils/internal/compose.d.ts"
+  ]
+}

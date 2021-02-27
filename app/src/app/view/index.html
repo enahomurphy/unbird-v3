@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        worker-src blob:;
+        child-src 'self';
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://webapp.girbil.com  https://webapp-staging.girbil.com  https://webapp-rocks.girbil.com  http://localhost:3000 https://cdn.segment.com http://cdn.segment.com;
+        object-src 'none';
+        media-src https://cdn.girbil.com https://girbil.s3-accelerate.amazonaws.com https://assets.girbil.com https://girbil.s3.amazonaws.com file: blob: data:;
+    "
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover"
+    />
+
+    <meta name="theme-color" content="#007aff" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <title>Unbird</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="modal-root"></div>
+    <script src="../index.tsx"></script>
+  </body>
+</html>
