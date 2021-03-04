@@ -1,0 +1,12 @@
+{
+  "header1": "Log into your workspace",
+  "welcome": {
+    "part1": "Welcome back to unbird. Please provide your username",
+    "part2": "and password to continue"
+  },
+  "login": "Log In",
+  "lostPassword": {
+    "part1": "Lost your password? Recover",
+    "part2": "here"
+  }
+}

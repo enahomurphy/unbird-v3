@@ -10,6 +10,8 @@ export interface InputProps {
   value: string;
   errorMessage?: string;
   maxLength?: number;
+  type?: string;
+  renderTitle?: boolean;
 }
 
 const Input: FC<InputProps> = ({
@@ -19,12 +21,16 @@ const Input: FC<InputProps> = ({
   placeholder,
   errorMessage,
   maxLength,
+  type = 'text',
+  renderTitle = true,
 }) => {
   return (
     <CustomInput>
-      <Span marginBottom="10px">{title}</Span>
+      <RenderIf isTrue={renderTitle}>
+        <Span marginBottom="10px">{title}</Span>
+      </RenderIf>
       <input
-        type="text"
+        type={type}
         name={title}
         value={value}
         placeholder={placeholder}

@@ -5,7 +5,7 @@ export const CustomInput = styled.div`
   flex-direction: column;
 
   &:not(:first-of-type) {
-    margin-top: 24px;
+    margin-top: 16px;
   }
 
   input {
@@ -13,9 +13,10 @@ export const CustomInput = styled.div`
     background: ${({ theme }) => theme.colors.white};
     border: ${({ theme }) => `1px solid ${theme.colors.tiara}`};
     box-sizing: border-box;
-    border-radius: 6px;
+    border-radius: 44px;
+    z-index: 5;
 
-    &[type='text'] {
+    &[type='text'], &[type='password'] {
       color: ${({ theme }) => theme.colors.licorice};
       padding: 9px 12px;
       font-size: 16px;
@@ -33,25 +34,38 @@ export const CustomInput = styled.div`
 `;
 
 export const ErrorMessage = styled.div`
-  background-color: ${({ theme }) => theme.colors.melon};
-  width: fit-content;
+  background-color: ${({ theme }) => theme.colors.inputError};
+  width: 100%;
   height: 40px;
   border-radius: 4px;
-  position: absolute;
-  right: 15px;
   display: flex;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 18px;
+  border-radius: 0 0 20px 20px;
+  font-size: 12px;
+  Line-height: 14px;
+  color: #E86262;
+
+
+  &::before {
+    content: ' ';
+    position: absolute;
+    bottom: 95%;
+    left: 1%;
+    margin-left: -3px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #FAEAEA;
+  }
 
   &::after {
     content: ' ';
     position: absolute;
-    bottom: 100%;
-    left: 85%;
-    margin-left: -5px;
-    border-width: 5px;
+    bottom: 95%;
+    left: 99%;
+    margin-left: -17px;
+    border-width: 10px;
     border-style: solid;
-    border-color: ${({ theme }) =>
-      `transparent transparent ${theme.colors.melon} transparent`};
+    border-color: #FAEAEA;
   }
 `;

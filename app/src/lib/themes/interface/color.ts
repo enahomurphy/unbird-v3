@@ -21,6 +21,7 @@ export interface Colors {
   tarawera: string;
   melon: string;
   electric: string;
+  inputError: string;
 }
 
 export enum Color {
@@ -46,6 +47,7 @@ export enum Color {
   tarawera = 'tarawera',
   melon = 'melon',
   electric = 'electric',
+  inputError = '#FAEAEA',
 }
 
 export default Colors;

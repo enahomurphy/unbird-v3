@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { storage } from 'lib/utils';
 
-const defaultPath = '/logout';
+const defaultPath = '/login';
 
 const Authenticated: FC<RouteProps> = ({
   exact,
