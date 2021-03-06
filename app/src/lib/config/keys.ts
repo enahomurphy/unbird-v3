@@ -4,7 +4,6 @@ export interface PusherConfig {
 }
 
 export interface ConfigKeys {
-  mediaServer: string;
   apiUrl: string;
   appEnv: string;
   pusher: PusherConfig;
@@ -34,13 +33,11 @@ export const keys: ConfigKeys = {
     process.env.NODE_ENV === 'test'
       ? 'http://localhost:3000'
       : process.env.API_URL,
-  webUrl: process.env.WEB_URL,
   appEnv: process.env.APP_ENV,
   pusher: pusherConfig,
   segment: process.env.SEGMENT_KEY,
   nodeEnv: process.env.NODE_ENV,
   optimizely: process.env.OPTIMIZELY_KEY,
-  websiteUrl: process.env.WEBSITE_URL,
   social: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
