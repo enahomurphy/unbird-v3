@@ -1,6 +1,6 @@
 import React, { FC, ReactElement, useState } from 'react';
 import { useTranslation} from 'react-i18next';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 
 import { Div, H1, Page, Space, P } from 'components/Styles';
 import { Button } from 'components/Buttons';
@@ -38,7 +38,7 @@ const Login: FC = (): ReactElement => {
               <Input errorMessage='' renderTitle={false} title='company' onInputChange={(e) => onInputChange('company', data, setData, e)} value={data.company} placeholder={t('signup.placeholder.company')} />
               <Input errorMessage='' renderTitle={false} title='email' onInputChange={(e) => onInputChange('email', data, setData, e)} value={data.email} placeholder={t('signup.placeholder.email')} />
               <Input renderTitle={false} title='password' type='password' onInputChange={(e) => onInputChange('password', data, setData, e)} value={data.password} placeholder={t('signup.placeholder.password')} />
-              <Input renderTitle={false} title='confirmPassword' type='password' onInputChange={(e) => onInputChange('confirmPassword', data, setData, e)} value={data.password} placeholder={t('signup.placeholder.confirmPassword')} />
+              <Input renderTitle={false} title='confirmPassword' type='password' onInputChange={(e) => onInputChange('confirmPassword', data, setData, e)} value={data.confirmPassword} placeholder={t('signup.placeholder.confirmPassword')} />
               <Input errorMessage='' renderTitle={false} title='job' onInputChange={(e) => onInputChange('job', data, setData, e)} value={data.job} placeholder={t('signup.placeholder.job')} />
               <Input errorMessage='' renderTitle={false} title='aboutUs' onInputChange={(e) => onInputChange('aboutUs', data, setData, e)} value={data.aboutUs} placeholder={t('signup.placeholder.aboutUs')} />
             </Div>
