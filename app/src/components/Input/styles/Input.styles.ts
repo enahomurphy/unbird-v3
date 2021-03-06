@@ -16,7 +16,7 @@ export const CustomInput = styled.div`
     border-radius: 44px;
     z-index: 5;
 
-    &[type='text'], &[type='password'] {
+    &[type] {
       color: ${({ theme }) => theme.colors.licorice};
       padding: 9px 12px;
       font-size: 16px;

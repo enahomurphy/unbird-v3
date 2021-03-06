@@ -3,6 +3,7 @@ import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { storage } from 'lib/utils';
 
 const defaultPath = '/login';
+const unAuthPaths: string[] = ['/signup'];
 
 const Authenticated: FC<RouteProps> = ({
   exact,
@@ -10,6 +11,10 @@ const Authenticated: FC<RouteProps> = ({
   path,
 }): ReactElement => {
   const user = storage.payload;
+
+  if (unAuthPaths.includes(path)) {
+    return <Route exact={exact} component={component} path={path} />;
+  }
 
   if (!user && path !== defaultPath) {
     return <Redirect to={{ pathname: defaultPath }} />;
