@@ -7,13 +7,22 @@ import { Button } from 'components/Buttons';
 import Input from 'components/Input';
 import { Color } from 'lib/themes/interface';
 import { Unbird } from 'components/Icons';
+import { ILogin } from 'shared/interfaces';
 import { Main } from '../Styles';
 
 const Login: FC = (): ReactElement => {
   const { t: translate } = useTranslation();
-  const [data, setData] = useState({ email: '', password: '' });
+  const [data, setData] = useState<ILogin>({
+    email: '',
+    password: ''
+  });
 
-  const onInputChange = (field: string, data: object, setData: any, event: BaseSyntheticEvent) => {
+  const onInputChange = (
+    field: string,
+    data: object,
+    setData: Function,
+    event: BaseSyntheticEvent
+  ) => {
     return setData({ ...data, [field]: event.target.value });
   };
 

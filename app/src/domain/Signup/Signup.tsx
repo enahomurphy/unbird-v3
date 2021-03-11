@@ -8,10 +8,11 @@ import Input from 'components/Input';
 import { Color } from 'lib/themes/interface';
 import { Unbird } from 'components/Icons';
 import { Main } from '../Styles';
+import { ISignUp } from 'shared/interfaces';
 
 const Login: FC = (): ReactElement => {
   const { t: translate } = useTranslation();
-  const [data, setData] = useState({
+  const [data, setData] = useState<ISignUp>({
     company: '',
     email: '',
     password: '',
@@ -20,7 +21,7 @@ const Login: FC = (): ReactElement => {
     aboutUs: '',
   });
 
-  const onInputChange = (field: string, data: object, setData: any, event: BaseSyntheticEvent) => {
+  const onInputChange = (field: string, data: object, setData: Function, event: BaseSyntheticEvent) => {
     return setData({ ...data, [field]: event.target.value });
   };
 
@@ -75,7 +76,7 @@ const Login: FC = (): ReactElement => {
                 placeholder={translate('signup.placeholder.password')}
               />
               <Input
-                errorMessage="Passwords mismatch! Please check and try again."
+                errorMessage=""
                 title="Confirm password"
                 type="password"
                 onInputChange={(e) =>

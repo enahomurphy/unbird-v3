@@ -21,7 +21,8 @@
       "domain/*": ["./src/domain/*"],
       "lib/*": ["./src/lib/*"],
       "assets/*": [".src/assets/*"],
-      "react-virtualized/List": ["react-virtualized/dist/es/List"]
+      "react-virtualized/List": ["react-virtualized/dist/es/List"],
+      "shared/*": ["./src/shared/*"]
     }
   },
   "include": [
