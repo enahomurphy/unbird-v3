@@ -12,7 +12,7 @@ const Authenticated: FC<RouteProps> = ({
 }): ReactElement => {
   const user = storage.payload;
 
-  if (unAuthPaths.includes(path)) {
+  if (unAuthPaths.includes(path as string)) {
     return <Route exact={exact} component={component} path={path} />;
   }
 

@@ -2,6 +2,7 @@ import { Div, Span } from 'components/Styles';
 import React, { memo, FC } from 'react';
 import RenderIf from 'components/RenderIf/RenderIf';
 import { CustomInput, ErrorMessage } from './styles';
+import { Color } from 'lib/themes/interface';
 
 export interface InputProps {
   onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -27,7 +28,15 @@ const Input: FC<InputProps> = ({
   return (
     <CustomInput>
       <RenderIf isTrue={renderTitle}>
-        <Span marginBottom="10px">{title}</Span>
+        <Span
+          fontSize="12px"
+          lineHeight="20px"
+          textAlign="initial"
+          marginBottom="8px"
+          color={Color.greyishNavy}
+        >
+          {title}
+        </Span>
       </RenderIf>
       <input
         type={type}

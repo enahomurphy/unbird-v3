@@ -1,6 +1,6 @@
 {
-  "text1": "Your products have great potentials! Let’s propel them into space",
-  "signupText": "CREATE WORKSPACE",
+  "signupText": "Your products have great potentials! Let’s propel them into space",
+  "signupBtnText": "CREATE WORKSPACE",
   "placeholder": {
     "company": "Company name",
     "password": "Password",
@@ -9,5 +9,6 @@
     "job": "Job Title",
     "aboutUs": "How did you learn about us?"
   },
-  "toLogin": "Back to Login"
+  "toLogin": "Back to Login",
+  "tryUnbird": "Try Unbird for free!"
 }

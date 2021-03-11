@@ -40,7 +40,7 @@ export const ErrorMessage = styled.div`
   border-radius: 4px;
   display: flex;
   align-items: center;
-  padding: 0 18px;
+  padding: 8px 15px;
   border-radius: 0 0 20px 20px;
   font-size: 12px;
   Line-height: 14px;

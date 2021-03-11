@@ -22,6 +22,7 @@ export interface Colors {
   melon: string;
   electric: string;
   inputError: string;
+  greyishNavy: string;
 }
 
 export enum Color {
@@ -48,6 +49,7 @@ export enum Color {
   melon = 'melon',
   electric = 'electric',
   inputError = '#FAEAEA',
+  greyishNavy = '#565661'
 }
 
 export default Colors;
