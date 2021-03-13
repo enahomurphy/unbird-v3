@@ -90,12 +90,12 @@ const Login: FC = (): ReactElement => {
             color={Color.darkAsh}
           >
             {translate('login.lostPassword.recover')}{' '}
-            <a
-              href="#"
+            <Link
+              to="/resetpassword"
               style={{ textDecoration: 'none', color: '#666', fontWeight: 700 }}
             >
               {translate('login.lostPassword.here')}
-            </a>
+            </Link>
           </P>
           <Space height="8px" />
           <P

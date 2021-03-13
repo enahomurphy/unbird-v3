@@ -39,6 +39,7 @@ const appTheme: DefaultTheme = {
     melon: '#F55157',
     electric: '#6371F3',
     inputError: '#FAEAEA',
+    greyishNavy: '#565661'
   },
   fontSizes: {
     header: '22px',

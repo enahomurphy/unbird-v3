@@ -49,7 +49,7 @@ export enum Color {
   melon = 'melon',
   electric = 'electric',
   inputError = '#FAEAEA',
-  greyishNavy = '#565661'
+  greyishNavy = 'greyishNavy'
 }
 
 export default Colors;

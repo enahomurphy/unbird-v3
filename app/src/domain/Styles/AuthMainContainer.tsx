@@ -11,6 +11,10 @@ export const Main = styled.main`
   width: 1000px;
   margin-top: 80px;
 
+  .reset-arrow-back {
+    transform: translate(0, -1px);
+  }
+
   @media (max-width: 400px) {
     width: 80%;
 
