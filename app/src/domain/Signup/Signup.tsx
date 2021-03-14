@@ -26,33 +26,33 @@ const Login: FC = (): ReactElement => {
   };
 
   return (
-    <Page color={Color.black} background="#ffffff" padding="21px 32px">
+    <Page color={Color.black} background='#ffffff' padding='21px 32px'>
       <Unbird />
       <Main>
         <Div
-          width="inherit"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          marginTop="8%"
+          width='inherit'
+          display='flex'
+          flexDirection='column'
+          alignItems='center'
+          marginTop='8%'
         >
           <P
-            className="signup-text1"
+            className='signup-text1'
             color={Color.black}
-            width="396px"
-            fontSize="18px"
-            lineHeight="24px"
+            width='396px'
+            fontSize='18px'
+            lineHeight='24px'
           >
             {translate('signup.signupText')}
           </P>
-          <Space height="16px" />
-          <H1 fontSize="24px" color={Color.black}>{translate('signup.tryUnbird')}</H1>
-          <Space height="32px" />
-          <Div className="form-content" width="30%">
-            <Div className="form-input-container">
+          <Space height='16px' />
+          <H1 fontSize='24px' color={Color.black}>{translate('signup.tryUnbird')}</H1>
+          <Space height='32px' />
+          <Div className='form-content' width='30%'>
+            <Div className='form-input-container'>
               <Input
-                errorMessage=""
-                title="Company name"
+                errorMessage=''
+                title='Company name'
                 onInputChange={(e) =>
                   onInputChange('company', data, setData, e)
                 }
@@ -60,15 +60,15 @@ const Login: FC = (): ReactElement => {
                 placeholder={translate('signup.placeholder.company')}
               />
               <Input
-                errorMessage=""
-                title="Email Address"
+                errorMessage=''
+                title='Email Address'
                 onInputChange={(e) => onInputChange('email', data, setData, e)}
                 value={data.email}
                 placeholder={translate('signup.placeholder.email')}
               />
               <Input
-                title="Password"
-                type="password"
+                title='Password'
+                type='password'
                 onInputChange={(e) =>
                   onInputChange('password', data, setData, e)
                 }
@@ -76,9 +76,9 @@ const Login: FC = (): ReactElement => {
                 placeholder={translate('signup.placeholder.password')}
               />
               <Input
-                errorMessage=""
-                title="Confirm password"
-                type="password"
+                errorMessage=''
+                title='Confirm password'
+                type='password'
                 onInputChange={(e) =>
                   onInputChange('confirmPassword', data, setData, e)
                 }
@@ -86,14 +86,14 @@ const Login: FC = (): ReactElement => {
                 placeholder={translate('signup.placeholder.confirmPassword')}
               />
               <Input
-                errorMessage=""
+                errorMessage=''
                 title={translate('signup.placeholder.job')}
                 onInputChange={(e) => onInputChange('job', data, setData, e)}
                 value={data.job}
                 placeholder={translate('signup.placeholder.job')}
               />
               <Input
-                errorMessage=""
+                errorMessage=''
                 title={translate('signup.placeholder.aboutUs')}
                 onInputChange={(e) =>
                   onInputChange('aboutUs', data, setData, e)
@@ -102,26 +102,26 @@ const Login: FC = (): ReactElement => {
                 placeholder={translate('signup.placeholder.aboutUs')}
               />
             </Div>
-            <Space height="32px" />
+            <Space height='32px' />
             <Button
-              background="#18C1E0"
-              width="100%"
-              borderRadius="10px"
-              textTransform="uppercase"
-              padding="12px 24px"
+              background='#18C1E0'
+              width='100%'
+              borderRadius='10px'
+              textTransform='uppercase'
+              padding='12px 24px'
             >
               {translate('signup.signupBtnText')}
             </Button>
-            <Space height="32px" />
+            <Space height='32px' />
           </Div>
           <P
-            fontWeight="400"
-            fontSize="14px"
-            lineHeight="14px"
+            fontWeight='400'
+            fontSize='14px'
+            lineHeight='14px'
             color={Color.darkAsh}
           >
             <Link
-              to="/login"
+              to='/login'
               style={{ textDecoration: 'none', color: '#666', fontWeight: 700 }}
             >
               {translate('signup.toLogin')}
