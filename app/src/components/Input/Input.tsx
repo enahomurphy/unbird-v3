@@ -2,6 +2,7 @@ import { Div, Span } from 'components/Styles';
 import React, { memo, FC } from 'react';
 import RenderIf from 'components/RenderIf/RenderIf';
 import { CustomInput, ErrorMessage } from './styles';
+import { Color } from 'lib/themes/interface';
 
 export interface InputProps {
   onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -10,6 +11,8 @@ export interface InputProps {
   value: string;
   errorMessage?: string;
   maxLength?: number;
+  type?: string;
+  renderTitle?: boolean;
 }
 
 const Input: FC<InputProps> = ({
@@ -19,12 +22,24 @@ const Input: FC<InputProps> = ({
   placeholder,
   errorMessage,
   maxLength,
+  type = 'text',
+  renderTitle = true,
 }) => {
   return (
     <CustomInput>
-      <Span marginBottom="10px">{title}</Span>
+      <RenderIf isTrue={renderTitle}>
+        <Span
+          fontSize="12px"
+          lineHeight="20px"
+          textAlign="initial"
+          marginBottom="8px"
+          color={Color.greyishNavy}
+        >
+          {title}
+        </Span>
+      </RenderIf>
       <input
-        type="text"
+        type={type}
         name={title}
         value={value}
         placeholder={placeholder}

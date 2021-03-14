@@ -45,3 +45,4 @@ export { default as Volume } from './Volume';
 export { default as Logo } from './Logo';
 export { default as Google } from './Google';
 export { default as Microsoft } from './Microsoft';
+export { default as Unbird } from './Unbird';

@@ -2,7 +2,8 @@ import React, { FC, ReactElement } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { storage } from 'lib/utils';
 
-const defaultPath = '/logout';
+const defaultPath = '/login';
+const unAuthPaths: string[] = ['/signup', '/resetpassword'];
 
 const Authenticated: FC<RouteProps> = ({
   exact,
@@ -10,6 +11,10 @@ const Authenticated: FC<RouteProps> = ({
   path,
 }): ReactElement => {
   const user = storage.payload;
+
+  if (unAuthPaths.includes(path as string)) {
+    return <Route exact={exact} component={component} path={path} />;
+  }
 
   if (!user && path !== defaultPath) {
     return <Redirect to={{ pathname: defaultPath }} />;

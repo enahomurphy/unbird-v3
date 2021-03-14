@@ -1,0 +1,14 @@
+{
+  "signupText": "Your products have great potentials! Let’s propel them into space",
+  "signupBtnText": "CREATE WORKSPACE",
+  "placeholder": {
+    "company": "Company name",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "email": "Email address",
+    "job": "Job Title",
+    "aboutUs": "How did you learn about us?"
+  },
+  "toLogin": "Back to Login",
+  "tryUnbird": "Try Unbird for free!"
+}

@@ -1,6 +1,9 @@
 import { ComponentType } from 'react';
 import {
   Home,
+  Login,
+  Signup,
+  ResetPassword
 } from 'domain/index';
 
 interface Route {
@@ -18,6 +21,21 @@ export const routes: Route[] = [
   {
     path: '/',
     Component: Home,
+    exact: true,
+  },
+  {
+    path: '/login',
+    Component: Login,
+    exact: true,
+  },
+  {
+    path: '/signup',
+    Component: Signup,
+    exact: true,
+  },
+  {
+    path: '/resetpassword',
+    Component: ResetPassword,
     exact: true,
   },
   {
