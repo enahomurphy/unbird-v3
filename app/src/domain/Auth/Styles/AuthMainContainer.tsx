@@ -4,8 +4,12 @@ export const Main = styled.main`
   display: flex;
   justify-content: center;
   text-align: center;
-  width: 100%;
-  margin-top: 80px;
+  width: 1000px;
+  margin: 181px auto;
+
+  @media (max-width: 960px) {
+    width: 100%;
+  }
 
   .reset-arrow-back {
     transform: translate(0, -1px);
