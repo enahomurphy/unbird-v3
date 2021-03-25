@@ -7,7 +7,7 @@ import { Button } from 'components/Buttons';
 import Input from 'components/Input';
 import { Color } from 'lib/themes/interface';
 import { Unbird } from 'components/Icons';
-import { ILogin } from 'shared/interfaces';
+import { ILogin } from 'domain/Auth/interfaces';
 import { Main } from '../Styles';
 
 const Login: FC = (): ReactElement => {

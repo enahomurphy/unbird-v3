@@ -12,7 +12,7 @@ import Input from 'components/Input';
 import { Color } from 'lib/themes/interface';
 import { Unbird } from 'components/Icons';
 import { Main } from '../Styles';
-import { ISignUp } from 'shared/interfaces';
+import { ISignUp } from 'domain/Auth/interfaces';
 import { storage } from 'lib/utils/storage';
 
 const SIGNUP_MUTATION = gql`
