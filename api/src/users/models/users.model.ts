@@ -3,7 +3,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { hashPassword } from 'src/core/utils/password';
 
 @ObjectType()
-@Table({ modelName: 'users', timestamps: true, updatedAt: true })
+@Table({ modelName: 'users', timestamps: false, updatedAt: false })
 export class User extends Model {
   @Field(() => String, { nullable: true })
   id?: string;
@@ -29,12 +29,19 @@ export class User extends Model {
   })
   email?: string;
 
-  @Field(() => String)
+  @Field(() => Boolean, { nullable: true })
+  @Column({
+    type: DataType.BOOLEAN,
+    field: 'is_verified',
+  })
+  isVerified?: Boolean;
+
+  @Field(() => String, { nullable: true })
   @Column({
     type: DataType.STRING,
-    field: 'phone',
+    field: 'job_title',
   })
-  phone?: string;
+  jobTitle?: string
 
   @Column({
     type: DataType.STRING,
@@ -45,32 +52,13 @@ export class User extends Model {
   })
   password?: string;
 
-  @Column({
-    type: DataType.BOOLEAN,
-    field: 'phone_verified',
-  })
-  phoneVerified?: boolean;
-
-  @Field(() => String, { nullable: true })
-  @Column({
-    type: DataType.STRING,
-    field: 'address',
-  })
-  address?: string;
-
   @Field(() => Date, { nullable: true })
   @Column({
     type: DataType.DATE,
-    field: 'created_at',
+    field: 'last_active',
   })
-  createdAt?: string;
+  lastActive?: string;
 
-  @Field(() => Date, { nullable: true })
-  @Column({
-    type: DataType.DATE,
-    field: 'updated_at',
-  })
-  updatedAt?: string;
 
   @Field(() => String, { nullable: true })
   @Column(DataType.VIRTUAL)

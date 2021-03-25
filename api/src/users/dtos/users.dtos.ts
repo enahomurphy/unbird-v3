@@ -6,6 +6,12 @@ export class UserIdRequestParamsDto {
   readonly userId!: string;
 }
 
+@ObjectType()
+export class SignupRes {
+  @Field({ nullable: true })
+  token?: string;
+}
+
 export class UserDto {
   @IsString()
   readonly firstName: string;
@@ -23,9 +29,21 @@ export class CreateUserDto {
   @Field()
   readonly password: string;
 
+  @IsEmail()
+  @Field()
+  readonly email: string;
+
   @IsString()
   @Field()
-  readonly phone: string;
+  readonly firstName: string;
+
+  @IsString()
+  @Field()
+  readonly lastName: string;
+
+  @IsString()
+  @Field()
+  readonly jobTitle: string;
 }
 
 @InputType()

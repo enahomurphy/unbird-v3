@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
-import { RedisService } from 'nestjs-redis';
+import { RedisService,  } from 'nestjs-redis';
 
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateUserDto } from '../dtos/users.dtos';
+import { CreateUserDto, SignupRes } from '../dtos/users.dtos';
 import { User } from '../models/users.model';
 import { generateOTP } from 'src/core/utils/opt';
 import { Transaction } from 'sequelize/types';
+import { sign } from 'src/core/utils/jwt';
 
 @Injectable()
 export class UserService {
@@ -15,7 +16,7 @@ export class UserService {
     @InjectModel(User)
     private userRepo: typeof User,
     @InjectQueue('sms') private readonly smsQueue: Queue,
-    private readonly redisService: RedisService,
+    private redisService: RedisService,
   ) {}
   getHello(): string[] {
     return ['Hello World!'];
@@ -25,13 +26,22 @@ export class UserService {
     return this.userRepo.findAll();
   }
 
-  createUser(data: CreateUserDto, transaction?: Transaction): Promise<User> {
-    const instance = new this.userRepo();
-    instance.phone = data.phone;
+  async createUser(data: CreateUserDto, transaction?: Transaction): Promise<SignupRes> {
+    const instance = new this.userRepo(data);
     instance.password = data.password;
 
-    if (transaction) return instance.save({ transaction });
-    return instance.save();
+    let newUser: User;
+    if (transaction) {
+      newUser = await instance.save({ transaction })
+    } else {
+      newUser = await instance.save();
+    }
+    
+    const token = sign({ userId: newUser.id });
+
+    const client = this.redisService.getClient('redis');
+    client.set(`userid-login-token-${newUser.id}`, token);
+    return ({ token });
   }
 
   findByID(id: string, include = []): Promise<User> {
