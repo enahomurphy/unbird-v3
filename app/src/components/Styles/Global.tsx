@@ -4,15 +4,14 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    overflow: hidden;
     padding: 0;
     font-family: ${({ theme }) => theme.fontFamily.primary};
-    background-color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.white};
   }
   html {
     box-sizing: border-box;
     font-size: 16px;
-    background-color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.white};
   }
 
   *, *:before, *:after {
@@ -23,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: ${({ theme }) => theme.fontFamily.primary};
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.black};
   }
 
   input::placeholder {

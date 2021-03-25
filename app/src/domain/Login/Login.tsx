@@ -78,6 +78,7 @@ const Login: FC = (): ReactElement => {
               borderRadius="10px"
               textTransform="uppercase"
               padding="12px 24px"
+              color={Color.white}
             >
               {translate('login.login')}
             </Button>

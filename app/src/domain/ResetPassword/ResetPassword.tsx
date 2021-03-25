@@ -69,6 +69,7 @@ const ResetPassword: FC = (): ReactElement => {
                 borderRadius='10px'
                 textTransform='uppercase'
                 padding='12px 24px'
+                color={Color.white}
               >
                 {translate('resetpassword.reset')}
               </Button>
@@ -92,7 +93,7 @@ const ResetPassword: FC = (): ReactElement => {
               </Link>{' '}
             </P>
           </RenderIf>
-          <RenderIf isTrue={!data.recoverySent}>
+          <RenderIf isTrue={data.recoverySent}>
             <Div
               background='linear-gradient(134.64deg, #05C1E0 -25.8%, #149FB8 74.84%)'
               width='39px'

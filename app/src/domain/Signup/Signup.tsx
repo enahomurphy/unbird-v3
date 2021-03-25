@@ -1,6 +1,10 @@
 import React, { BaseSyntheticEvent, FC, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { gql, useMutation } from '@apollo/client';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Div, H1, Page, Space, P } from 'components/Styles';
 import { Button } from 'components/Buttons';
@@ -9,32 +13,100 @@ import { Color } from 'lib/themes/interface';
 import { Unbird } from 'components/Icons';
 import { Main } from '../Styles';
 import { ISignUp } from 'shared/interfaces';
+import { storage } from 'lib/utils/storage';
 
-const Login: FC = (): ReactElement => {
+const SIGNUP_MUTATION = gql`
+  mutation Signup(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $jobTitle: String!
+    $password: String!
+  ) {
+    signup(
+      payload: {
+        firstName: $firstName
+        lastName: $lastName
+        email: $email
+        jobTitle: $jobTitle
+        password: $password
+      }
+    ) {
+      token
+    }
+  }
+`;
+
+const Signup: FC = (): ReactElement => {
   const { t: translate } = useTranslation();
   const [data, setData] = useState<ISignUp>({
+    firstName: '',
+    lastName: '',
     company: '',
     email: '',
     password: '',
     confirmPassword: '',
-    job: '',
+    jobTitle: '',
     aboutUs: '',
   });
+  const schema = yup.object().shape({
+    firstName: yup.string().required().label('First name'),
+    lastName: yup.string().required().label('Last name'),
+    email: yup.string().email().required().label('Email'),
+    jobTitle: yup.string().required().label('Job title'),
+    password: yup.string().min(8).required().label('Password'),
+    confirmPassword: yup
+      .string()
+      .min(8)
+      .required()
+      .oneOf([yup.ref('password'), null], 'Passwords must match')
+      .label('Confirm Password'),
+  });
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const onInputChange = (field: string, data: object, setData: Function, event: BaseSyntheticEvent) => {
+  const history = useHistory();
+
+  const [createUser, { error: signupServerError, loading }] = useMutation(
+    SIGNUP_MUTATION
+  );
+
+  const onInputChange = (
+    field: string,
+    data: object,
+    setData: Function,
+    event: BaseSyntheticEvent
+  ) => {
     return setData({ ...data, [field]: event.target.value });
+  };
+
+  const signupUser = async (data: ISignUp) => {
+    const { firstName, lastName, email, password, jobTitle } = data;
+    try {
+      const {
+        data: { signup },
+      } = await createUser({
+        variables: { firstName, lastName, email, password, jobTitle },
+      });
+      storage.setToken(signup.token);
+      history.push('/');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
     <Page color={Color.black} background="#ffffff" padding="21px 32px">
-      <Unbird />
+      <Div>
+        <Unbird />
+      </Div>
       <Main>
         <Div
           width="inherit"
           display="flex"
           flexDirection="column"
           alignItems="center"
-          marginTop="8%"
         >
           <P
             className="signup-text1"
@@ -46,10 +118,26 @@ const Login: FC = (): ReactElement => {
             {translate('signup.signupText')}
           </P>
           <Space height="16px" />
-          <H1 fontSize="24px" color={Color.black}>{translate('signup.tryUnbird')}</H1>
+          <H1 fontSize="24px" color={Color.black}>
+            {translate('signup.tryUnbird')}
+          </H1>
           <Space height="32px" />
           <Div className="form-content" width="30%">
-            <Div className="form-input-container">
+            <form className="form-input-container">
+              <Input
+                errorMessage={errors.firstName?.message}
+                title="First name"
+                name="firstName"
+                register={register}
+                placeholder={translate('signup.placeholder.firstName')}
+              />
+              <Input
+                errorMessage={errors.lastName?.message}
+                title="Last name"
+                name="lastName"
+                register={register}
+                placeholder={translate('signup.placeholder.lastName')}
+              />
               <Input
                 errorMessage=""
                 title="Company name"
@@ -60,48 +148,47 @@ const Login: FC = (): ReactElement => {
                 placeholder={translate('signup.placeholder.company')}
               />
               <Input
-                errorMessage=""
+                errorMessage={errors.email?.message}
                 title="Email Address"
-                onInputChange={(e) => onInputChange('email', data, setData, e)}
-                value={data.email}
+                name="email"
+                register={register}
                 placeholder={translate('signup.placeholder.email')}
               />
               <Input
+                errorMessage={errors.password?.message}
                 title="Password"
                 type="password"
-                onInputChange={(e) =>
-                  onInputChange('password', data, setData, e)
-                }
-                value={data.password}
+                name="password"
+                register={register}
                 placeholder={translate('signup.placeholder.password')}
               />
               <Input
-                errorMessage=""
+                errorMessage={errors.confirmPassword?.message}
                 title="Confirm password"
                 type="password"
-                onInputChange={(e) =>
-                  onInputChange('confirmPassword', data, setData, e)
-                }
-                value={data.confirmPassword}
+                name="confirmPassword"
+                register={register}
                 placeholder={translate('signup.placeholder.confirmPassword')}
               />
               <Input
-                errorMessage=""
+                errorMessage={errors.jobTitle?.message}
                 title={translate('signup.placeholder.job')}
-                onInputChange={(e) => onInputChange('job', data, setData, e)}
-                value={data.job}
+                name="jobTitle"
+                register={register}
                 placeholder={translate('signup.placeholder.job')}
               />
               <Input
                 errorMessage=""
                 title={translate('signup.placeholder.aboutUs')}
+                name="aboutUs"
+                register={register}
                 onInputChange={(e) =>
                   onInputChange('aboutUs', data, setData, e)
                 }
                 value={data.aboutUs}
                 placeholder={translate('signup.placeholder.aboutUs')}
               />
-            </Div>
+            </form>
             <Space height="32px" />
             <Button
               background="#18C1E0"
@@ -109,6 +196,9 @@ const Login: FC = (): ReactElement => {
               borderRadius="10px"
               textTransform="uppercase"
               padding="12px 24px"
+              color={Color.white}
+              onClick={handleSubmit(signupUser)}
+              disabled={loading}
             >
               {translate('signup.signupBtnText')}
             </Button>
@@ -133,4 +223,4 @@ const Login: FC = (): ReactElement => {
   );
 };
 
-export default Login;
+export default Signup;

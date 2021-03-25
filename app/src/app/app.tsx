@@ -25,7 +25,7 @@ const App: FC = ({ children }): ReactElement => {
               <GlobalStyle />
               <ToastContainer />
               <Router>
-                <Div height="calc(100vh);">{children}</Div>
+                <Div>{children}</Div>
               </Router>
             </AlertProvider>
           </ThemeProvider>
