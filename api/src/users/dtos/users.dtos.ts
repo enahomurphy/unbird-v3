@@ -7,7 +7,7 @@ export class UserIdRequestParamsDto {
 }
 
 @ObjectType()
-export class SignupRes {
+export class TokenRes {
   @Field({ nullable: true })
   token?: string;
 }
@@ -59,10 +59,12 @@ export class VerifyOUserTPDto {
 export class UserLoginDTO {
   @IsString()
   @Field()
-  readonly phone: string;
+  @IsEmail()
+  readonly email: string;
 
   @IsString()
   @Field()
+  @MinLength(8)
   readonly password: string;
 }
 

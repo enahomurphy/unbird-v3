@@ -1,6 +1,10 @@
 import React, { FC, ReactElement, BaseSyntheticEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { gql, useMutation } from '@apollo/client';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Div, H1, Page, Space, P } from 'components/Styles';
 import { Button } from 'components/Buttons';
@@ -8,7 +12,25 @@ import Input from 'components/Input';
 import { Color } from 'lib/themes/interface';
 import { Unbird } from 'components/Icons';
 import { ILogin } from 'domain/Auth/interfaces';
+import { storage } from 'lib/utils/storage';
 import { Main } from '../Styles';
+import RenderIf from 'components/RenderIf';
+
+const LOGIN_MUTATION = gql`
+  mutation Login(
+    $email: String!
+    $password: String!
+  ) {
+    login(
+      payload: {
+        email: $email
+        password: $password
+      }
+    ) {
+      token
+    }
+  }
+`;
 
 const Login: FC = (): ReactElement => {
   const { t: translate } = useTranslation();
@@ -16,98 +38,129 @@ const Login: FC = (): ReactElement => {
     email: '',
     password: ''
   });
+  const [login, { error, loading }] = useMutation(LOGIN_MUTATION);
 
-  const onInputChange = (
-    field: string,
-    data: object,
-    setData: Function,
-    event: BaseSyntheticEvent
-  ) => {
-    return setData({ ...data, [field]: event.target.value });
+  const schema = yup.object().shape({
+    email: yup.string().email().required().label('Email'),
+    password: yup.string().min(8).required().label('Password'),
+  });
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const history = useHistory();
+
+  const loginUser = async (data: ILogin) => {
+    const { email, password } = data;
+    try {
+      const {
+        data: { login: loginData },
+      } = await login({
+        variables: { email, password },
+      });
+      storage.setToken(loginData.token);
+      history.push('/');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
-    <Page color={Color.black} background="#ffffff" padding="21px 32px">
+    <Page color={Color.black} background='#ffffff' padding='21px 32px'>
       <Unbird />
       <Main>
         <Div
-          width="inherit"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
+          width='inherit'
+          display='flex'
+          flexDirection='column'
+          alignItems='center'
         >
-          <H1 color={Color.black} fontSize="24px">
+          <H1 color={Color.black} fontSize='24px'>
             {translate('login.header')}
           </H1>
-          <Space height="16px" />
+          <Space height='16px' />
           <P
-            fontWeight="400"
-            fontSize="14px"
-            lineHeight="14px"
+            fontWeight='400'
+            fontSize='14px'
+            lineHeight='14px'
             color={Color.darkAsh}
           >
             {translate('login.welcome.userMessage')}
             <br />
             {translate('login.welcome.passwordMessage')}
           </P>
-          <Space height="17px" />
-          <Div className="form-content" width="30%">
-            <Div className="form-input-container">
+          {/* To be uncommented when design for server error is available */}
+          {/* <RenderIf isTrue={Boolean(error?.message)}>
+            <Space height='8px' />
+            <Div
+              background='pink'
+              padding='15px'
+              borderRadius='20px'
+              color={Color.inputError}
+            >
+              {error?.message}
+            </Div>
+            <Space height='8px' />
+          </RenderIf> */}
+          <Space height='17px' />
+          <Div className='form-content' width='30%'>
+            <Div className='form-input-container'>
               <Input
-                errorMessage=""
-                title="Email address"
-                type="email"
-                onInputChange={(e) => onInputChange('email', data, setData, e)}
-                value={data.email}
-                placeholder="johndoe@gmail.com"
+                errorMessage={errors.email?.message}
+                title='Email address'
+                type='email'
+                name='email'
+                register={register}
+                placeholder='johndoe@gmail.com'
               />
               <Input
-                title="Password"
-                type="password"
-                onInputChange={(e) =>
-                  onInputChange('password', data, setData, e)
-                }
-                value={data.password}
-                placeholder="password"
+                errorMessage={errors.password?.message}
+                title='Password'
+                type='password'
+                register={register}
+                name='password'
+                placeholder='password'
               />
             </Div>
-            <Space height="32px" />
+            <Space height='32px' />
             <Button
-              background="#18C1E0"
-              width="100%"
-              borderRadius="10px"
-              textTransform="uppercase"
-              padding="12px 24px"
+              background='#18C1E0'
+              width='100%'
+              borderRadius='10px'
+              textTransform='uppercase'
+              padding='12px 24px'
               color={Color.white}
+              onClick={handleSubmit(loginUser)}
+              disabled={loading}
             >
               {translate('login.login')}
             </Button>
-            <Space height="32px" />
+            <Space height='32px' />
           </Div>
           <P
-            fontWeight="400"
-            fontSize="14px"
-            lineHeight="14px"
+            fontWeight='400'
+            fontSize='14px'
+            lineHeight='14px'
             color={Color.darkAsh}
           >
             {translate('login.lostPassword.recover')}{' '}
             <Link
-              to="/resetpassword"
+              to='/resetpassword'
               style={{ textDecoration: 'none', color: '#666', fontWeight: 700 }}
             >
               {translate('login.lostPassword.here')}
             </Link>
           </P>
-          <Space height="8px" />
+          <Space height='8px' />
           <P
-            fontWeight="400"
-            fontSize="14px"
-            lineHeight="14px"
+            fontWeight='400'
+            fontSize='14px'
+            lineHeight='14px'
             color={Color.darkAsh}
           >
             New here?{' '}
             <Link
-              to="/signup"
+              to='/signup'
               style={{ textDecoration: 'none', color: '#666', fontWeight: 700 }}
             >
               Create a new workspace
