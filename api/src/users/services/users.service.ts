@@ -1,7 +1,7 @@
 import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
-import { RedisService,  } from 'nestjs-redis';
+import { RedisService } from 'nestjs-redis';
 
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto, TokenRes, UserLoginDTO } from '../dtos/users.dtos';
@@ -17,7 +17,7 @@ export class UserService {
     @InjectModel(User)
     private userRepo: typeof User,
     @InjectQueue('sms') private readonly smsQueue: Queue,
-    private redisService: RedisService,
+    private readonly redisService: RedisService,
   ) {}
   getHello(): string[] {
     return ['Hello World!'];
@@ -46,7 +46,7 @@ export class UserService {
     const token = sign({ userId: newUser.id, workspaceId: 1 });
 
     const client = this.redisService.getClient('redis');
-    client.set(`userid-login-token:${newUser.id}`, JSON.stringify({ 'workspace1': token }));
+    client.set(`userid-login-token:${newUser.id}`, token);
     return ({ token });
   }
 
