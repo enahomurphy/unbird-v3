@@ -1,9 +1,8 @@
-import React, { FC, ReactElement, BaseSyntheticEvent, useState } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Div, H1, Page, Space, P } from 'components/Styles';
@@ -14,36 +13,13 @@ import { Unbird } from 'components/Icons';
 import { ILogin } from 'domain/Auth/interfaces';
 import { storage } from 'lib/utils/storage';
 import { Main } from '../Styles';
-import RenderIf from 'components/RenderIf';
-
-const LOGIN_MUTATION = gql`
-  mutation Login(
-    $email: String!
-    $password: String!
-  ) {
-    login(
-      payload: {
-        email: $email
-        password: $password
-      }
-    ) {
-      token
-    }
-  }
-`;
+import { LOGIN_MUTATION } from './graphql/mutation';
+import { schema } from './validationSchema';
 
 const Login: FC = (): ReactElement => {
   const { t: translate } = useTranslation();
-  const [data, setData] = useState<ILogin>({
-    email: '',
-    password: ''
-  });
   const [login, { error, loading }] = useMutation(LOGIN_MUTATION);
 
-  const schema = yup.object().shape({
-    email: yup.string().email().required().label('Email'),
-    password: yup.string().min(8).required().label('Password'),
-  });
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });

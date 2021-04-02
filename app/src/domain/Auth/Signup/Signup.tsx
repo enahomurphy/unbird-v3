@@ -1,9 +1,8 @@
-import React, { BaseSyntheticEvent, FC, ReactElement, useState } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory } from 'react-router-dom';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Div, H1, Page, Space, P } from 'components/Styles';
@@ -14,54 +13,12 @@ import { Unbird } from 'components/Icons';
 import { Main } from '../Styles';
 import { ISignUp } from 'domain/Auth/interfaces';
 import { storage } from 'lib/utils/storage';
-
-const SIGNUP_MUTATION = gql`
-  mutation Signup(
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-    $jobTitle: String!
-    $password: String!
-  ) {
-    signup(
-      payload: {
-        firstName: $firstName
-        lastName: $lastName
-        email: $email
-        jobTitle: $jobTitle
-        password: $password
-      }
-    ) {
-      token
-    }
-  }
-`;
+import { SIGNUP_MUTATION } from './graphql/mutation';
+import { schema } from './validationSchema';
 
 const Signup: FC = (): ReactElement => {
   const { t: translate } = useTranslation();
-  const [data, setData] = useState<ISignUp>({
-    firstName: '',
-    lastName: '',
-    company: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    jobTitle: '',
-    aboutUs: '',
-  });
-  const schema = yup.object().shape({
-    firstName: yup.string().required().label('First name'),
-    lastName: yup.string().required().label('Last name'),
-    email: yup.string().email().required().label('Email'),
-    jobTitle: yup.string().required().label('Job title'),
-    password: yup.string().min(8).required().label('Password'),
-    confirmPassword: yup
-      .string()
-      .min(8)
-      .required()
-      .oneOf([yup.ref('password'), null], 'Passwords must match')
-      .label('Confirm Password'),
-  });
+
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -71,15 +28,6 @@ const Signup: FC = (): ReactElement => {
   const [createUser, { error: signupServerError, loading }] = useMutation(
     SIGNUP_MUTATION
   );
-
-  const onInputChange = (
-    field: string,
-    data: object,
-    setData: Function,
-    event: BaseSyntheticEvent
-  ) => {
-    return setData({ ...data, [field]: event.target.value });
-  };
 
   const signupUser = async (data: ISignUp) => {
     const { firstName, lastName, email, password, jobTitle } = data;
@@ -139,15 +87,6 @@ const Signup: FC = (): ReactElement => {
                 placeholder={translate('signup.placeholder.lastName')}
               />
               <Input
-                errorMessage=""
-                title="Company name"
-                onInputChange={(e) =>
-                  onInputChange('company', data, setData, e)
-                }
-                value={data.company}
-                placeholder={translate('signup.placeholder.company')}
-              />
-              <Input
                 errorMessage={errors.email?.message}
                 title="Email Address"
                 name="email"
@@ -176,17 +115,6 @@ const Signup: FC = (): ReactElement => {
                 name="jobTitle"
                 register={register}
                 placeholder={translate('signup.placeholder.job')}
-              />
-              <Input
-                errorMessage=""
-                title={translate('signup.placeholder.aboutUs')}
-                name="aboutUs"
-                register={register}
-                onInputChange={(e) =>
-                  onInputChange('aboutUs', data, setData, e)
-                }
-                value={data.aboutUs}
-                placeholder={translate('signup.placeholder.aboutUs')}
               />
             </form>
             <Space height="32px" />
