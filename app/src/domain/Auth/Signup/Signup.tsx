@@ -9,7 +9,6 @@ import { Div, H1, Page, Space, P } from 'components/Styles';
 import { Button } from 'components/Buttons';
 import Input from 'components/Input';
 import { Color } from 'lib/themes/interface';
-import { Unbird } from 'components/Icons';
 import { Main } from '../Styles';
 import { ISignUp } from 'domain/Auth/interfaces';
 import { storage } from 'lib/utils/storage';
@@ -45,10 +44,7 @@ const Signup: FC = (): ReactElement => {
   };
 
   return (
-    <Page color={Color.black} background="#ffffff" padding="21px 32px">
-      <Div>
-        <Unbird />
-      </Div>
+    <Page color={Color.black} background="#ffffff">
       <Main>
         <Div
           width="inherit"

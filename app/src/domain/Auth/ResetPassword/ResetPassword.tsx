@@ -6,7 +6,7 @@ import { Div, H1, Page, Space, P, Span } from 'components/Styles';
 import { Button } from 'components/Buttons';
 import Input from 'components/Input';
 import { Color } from 'lib/themes/interface';
-import { Unbird, Check } from 'components/Icons';
+import { Check } from 'components/Icons';
 import RenderIf from 'components/RenderIf';
 import { Main } from '../Styles';
 
@@ -25,8 +25,7 @@ const ResetPassword: FC = (): ReactElement => {
   };
 
   return (
-    <Page color={Color.black} background='#ffffff' padding='21px 32px'>
-      <Unbird />
+    <Page color={Color.black} background='#ffffff'>
       <Main>
         <Div
           width='inherit'
