@@ -1,6 +1,7 @@
 import { MiddlewareConsumer, Module, OnModuleInit } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { BullModule } from '@nestjs/bull';
+import { GraphQLError, GraphQLFormattedError } from 'graphql';
 
 import { DateScalar } from './app.scalars';
 import { keys } from './core/config';
@@ -24,6 +25,14 @@ import { UserModule } from './users';
       },
       debug: keys.env !== 'production',
       playground: keys.env !== 'production',
+      formatError: (error: GraphQLError) => {
+        const graphQLFormattedError: GraphQLFormattedError = {
+          message: error.extensions?.exception?.response?.message
+            || error.extensions?.exception?.errors?.[0]?.message
+            || error.message,
+        };
+        return graphQLFormattedError;
+      }
     }),
     BullModule.forRoot({
       redis: keys.redis.url,

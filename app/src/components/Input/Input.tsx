@@ -5,23 +5,27 @@ import { CustomInput, ErrorMessage } from './styles';
 import { Color } from 'lib/themes/interface';
 
 export interface InputProps {
-  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   title: string;
+  name?: string;
   placeholder?: string;
-  value: string;
+  value?: string;
   errorMessage?: string;
   maxLength?: number;
   type?: string;
   renderTitle?: boolean;
+  register?: any;
 }
 
 const Input: FC<InputProps> = ({
   title,
+  name,
   value,
   onInputChange,
   placeholder,
   errorMessage,
   maxLength,
+  register,
   type = 'text',
   renderTitle = true,
 }) => {
@@ -40,11 +44,12 @@ const Input: FC<InputProps> = ({
       </RenderIf>
       <input
         type={type}
-        name={title}
+        name={name}
         value={value}
         placeholder={placeholder}
         onChange={onInputChange}
         maxLength={maxLength}
+        ref={register}
       />
       <RenderIf isTrue={Boolean(errorMessage)}>
         <Div position="relative">

@@ -4,19 +4,25 @@ export const Main = styled.main`
   display: flex;
   justify-content: center;
   text-align: center;
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 1000px;
-  margin-top: 80px;
+  margin: 181px auto;
+
+  @media (max-width: 960px) {
+    width: 100%;
+  }
 
   .reset-arrow-back {
     transform: translate(0, -1px);
   }
 
+  @media (max-width: 800px) {
+    .form-content {
+      width: 50%;
+    }
+  }
+
   @media (max-width: 400px) {
-    width: 80%;
+    width: 100%;
 
     .signup-text1, .form-content {
       width: 100%;

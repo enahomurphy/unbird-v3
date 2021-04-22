@@ -2,7 +2,7 @@ import decode from 'jwt-decode';
 
 export interface UserPayload {
   userId: string;
-  accountId?: string;
+  workspaceId?: string;
 }
 
 class TokenStorage {
@@ -16,7 +16,7 @@ class TokenStorage {
     try {
       const payload: UserPayload = this.token ? decode(this.token) : null;
 
-      if (!payload.accountId) {
+      if (!payload.workspaceId) {
         return null;
       }
 

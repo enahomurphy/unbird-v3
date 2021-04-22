@@ -7,7 +7,9 @@
     "confirmPassword": "Confirm password",
     "email": "Email address",
     "job": "Job Title",
-    "aboutUs": "How did you learn about us?"
+    "aboutUs": "How did you learn about us?",
+    "firstName": "First name",
+    "lastName": "Last name"
   },
   "toLogin": "Back to Login",
   "tryUnbird": "Try Unbird for free!"

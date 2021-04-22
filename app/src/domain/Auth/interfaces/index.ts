@@ -1,9 +1,11 @@
 export interface ISignUp {
+  firstName: string
+  lastName: string
   company: string
   email: string
   password: string
   confirmPassword: string
-  job: string
+  jobTitle: string
   aboutUs?: string
 };
 

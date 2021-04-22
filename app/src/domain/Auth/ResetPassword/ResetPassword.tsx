@@ -6,7 +6,7 @@ import { Div, H1, Page, Space, P, Span } from 'components/Styles';
 import { Button } from 'components/Buttons';
 import Input from 'components/Input';
 import { Color } from 'lib/themes/interface';
-import { Unbird, Check } from 'components/Icons';
+import { Check } from 'components/Icons';
 import RenderIf from 'components/RenderIf';
 import { Main } from '../Styles';
 
@@ -25,8 +25,7 @@ const ResetPassword: FC = (): ReactElement => {
   };
 
   return (
-    <Page color={Color.black} background='#ffffff' padding='21px 32px'>
-      <Unbird />
+    <Page color={Color.black} background='#ffffff'>
       <Main>
         <Div
           width='inherit'
@@ -69,6 +68,7 @@ const ResetPassword: FC = (): ReactElement => {
                 borderRadius='10px'
                 textTransform='uppercase'
                 padding='12px 24px'
+                color={Color.white}
               >
                 {translate('resetpassword.reset')}
               </Button>
@@ -92,7 +92,7 @@ const ResetPassword: FC = (): ReactElement => {
               </Link>{' '}
             </P>
           </RenderIf>
-          <RenderIf isTrue={!data.recoverySent}>
+          <RenderIf isTrue={data.recoverySent}>
             <Div
               background='linear-gradient(134.64deg, #05C1E0 -25.8%, #149FB8 74.84%)'
               width='39px'
