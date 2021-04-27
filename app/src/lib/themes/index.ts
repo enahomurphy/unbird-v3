@@ -38,8 +38,12 @@ const appTheme: DefaultTheme = {
     tarawera: '#2B3B46',
     melon: '#F55157',
     electric: '#6371F3',
-    inputError: '#FAEAEA',
-    greyishNavy: '#565661'
+    inputError: '#FEE3E3',
+    greyishNavy: '#565661',
+    ashButtonIconColor: '#778594',
+    unbirdBlue: '#18C1E0',
+    pinkTint200: '#FAA0A0',
+    greenTint500: '#D0F9E8'
   },
   fontSizes: {
     header: '22px',

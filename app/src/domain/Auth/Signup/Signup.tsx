@@ -37,7 +37,7 @@ const Signup: FC = (): ReactElement => {
         variables: { firstName, lastName, email, password, jobTitle },
       });
       storage.setToken(signup.token);
-      history.push('/');
+      history.push('/workspace/setup');
     } catch (e) {
       console.log(e);
     }

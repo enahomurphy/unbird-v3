@@ -23,6 +23,10 @@ export interface Colors {
   electric: string;
   inputError: string;
   greyishNavy: string;
+  ashButtonIconColor: string;
+  unbirdBlue: string;
+  pinkTint200: string;
+  greenTint500: string;
 }
 
 export enum Color {
@@ -48,8 +52,12 @@ export enum Color {
   tarawera = 'tarawera',
   melon = 'melon',
   electric = 'electric',
-  inputError = '#FAEAEA',
-  greyishNavy = 'greyishNavy'
+  inputError = '#FEE3E3',
+  greyishNavy = 'greyishNavy',
+  ashButtonIconColor = 'ashButtonIconColor',
+  unbirdBlue = 'unbirdBlue',
+  pinkTint200 = 'pinkTint200',
+  greenTint500 = 'greenTint500'
 }
 
 export default Colors;
