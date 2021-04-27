@@ -3,7 +3,7 @@ import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { storage } from 'lib/utils';
 
 const defaultPath = '/login';
-const unAuthPaths: string[] = ['/signup', '/resetpassword'];
+const unAuthPaths: string[] = ['/signup', '/resetpassword', '/workspace/setup'];
 
 const Authenticated: FC<RouteProps> = ({
   exact,

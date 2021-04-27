@@ -22,6 +22,10 @@ export const BaseButton = styled.button<BaseButtonProps>`
       'fontSize',
       'textTransform',
       'padding',
+      'visibility',
+      'border',
+      'marginTop',
+      'margin'
     ];
 
     keys.forEach((key) => {
@@ -39,6 +43,13 @@ export const BaseButton = styled.button<BaseButtonProps>`
         ...styles,
         opacity: '0.7',
         cursor: 'default',
+      };
+    }
+
+    if (props.visibility) {
+      styles = {
+        ...styles,
+        visibility: props.visibility
       };
     }
 

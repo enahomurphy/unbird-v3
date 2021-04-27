@@ -20,4 +20,8 @@ export interface BaseButtonProps {
     | 'lowercase'
     | 'full-width'
     | 'full-size-kana';
+  visibility?: 'visible' | 'hidden';
+  border?: string;
+  marginTop?: string;
+  margin?: string;
 }

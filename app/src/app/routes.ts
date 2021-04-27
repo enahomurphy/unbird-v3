@@ -3,7 +3,8 @@ import {
   Home,
   Login,
   Signup,
-  ResetPassword
+  ResetPassword,
+  WorkspaceSetup,
 } from 'domain/index';
 
 interface Route {
@@ -36,6 +37,11 @@ export const routes: Route[] = [
   {
     path: '/resetpassword',
     Component: ResetPassword,
+    exact: true,
+  },
+  {
+    path: '/workspace/setup',
+    Component: WorkspaceSetup,
     exact: true,
   },
   {

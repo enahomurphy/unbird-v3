@@ -46,3 +46,6 @@ export { default as Logo } from './Logo';
 export { default as Google } from './Google';
 export { default as Microsoft } from './Microsoft';
 export { default as Unbird } from './Unbird';
+export { default as Wave } from './Wave';
+export { default as BotHeader } from './BotHeader';
+export { default as BotThumbsUp } from './BotThumbsUp';
