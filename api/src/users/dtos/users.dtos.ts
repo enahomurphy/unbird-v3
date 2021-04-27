@@ -1,5 +1,5 @@
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
+import { Field, InputType, ObjectType, Int } from '@nestjs/graphql';
+import { IsEmail, IsString, MaxLength, MinLength, IsNumber } from 'class-validator';
 
 export class UserIdRequestParamsDto {
   @IsString()
@@ -44,6 +44,13 @@ export class CreateUserDto {
   @IsString()
   @Field()
   readonly jobTitle: string;
+}
+
+@InputType()
+export class UserIdInput {
+  @IsNumber()
+  @Field(() => Int)
+  readonly id: number;
 }
 
 @InputType()

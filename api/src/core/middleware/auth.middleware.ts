@@ -16,7 +16,8 @@ export class AuthMiddleware implements NestMiddleware {
     if (!tokenPayload) return next();
 
     const user = await this.usersService.findByID(tokenPayload.userId, [
-      'account',
+      // To be visited
+      // 'workspace', 
     ]);
 
     if (user) {
