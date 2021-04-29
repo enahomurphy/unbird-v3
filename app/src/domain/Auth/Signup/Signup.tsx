@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import PageWithLogo from '../../components/PageWithLogo';
 import { Div, H1, Page, Space, P } from 'components/Styles';
 import { Button } from 'components/Buttons';
 import Input from 'components/Input';
@@ -44,7 +45,7 @@ const Signup: FC = (): ReactElement => {
   };
 
   return (
-    <Page color={Color.black} background="#ffffff">
+    <PageWithLogo>
       <Main>
         <Div
           width="inherit"
@@ -143,7 +144,7 @@ const Signup: FC = (): ReactElement => {
           </P>
         </Div>
       </Main>
-    </Page>
+    </PageWithLogo>
   );
 };
 

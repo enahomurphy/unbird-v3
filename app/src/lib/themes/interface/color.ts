@@ -27,6 +27,8 @@ export interface Colors {
   unbirdBlue: string;
   pinkTint200: string;
   greenTint500: string;
+  steele0: string;
+  midnight0: string;
 }
 
 export enum Color {
@@ -57,7 +59,9 @@ export enum Color {
   ashButtonIconColor = 'ashButtonIconColor',
   unbirdBlue = 'unbirdBlue',
   pinkTint200 = 'pinkTint200',
-  greenTint500 = 'greenTint500'
+  greenTint500 = 'greenTint500',
+  steele0 = '#778594',
+  midnight0 = '#213245'
 }
 
 export default Colors;

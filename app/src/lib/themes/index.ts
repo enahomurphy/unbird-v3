@@ -43,7 +43,9 @@ const appTheme: DefaultTheme = {
     ashButtonIconColor: '#778594',
     unbirdBlue: '#18C1E0',
     pinkTint200: '#FAA0A0',
-    greenTint500: '#D0F9E8'
+    greenTint500: '#D0F9E8',
+    steele0: '#778594',
+    midnight0: '#213245'
   },
   fontSizes: {
     header: '22px',

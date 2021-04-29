@@ -185,6 +185,14 @@ export const Space = styled.div<{ height?: string }>`
   height: ${(props) => props.height};
 `;
 
+export const Aside = styled.aside<StyledTextProps>`
+  ${() => base}
+`;
+
+export const Main = styled.main<StyledTextProps>`
+  ${() => base}
+`;
+
 Space.defaultProps = {
   height: '16px',
 };

@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Div, H1, Page, Space, P } from 'components/Styles';
+import PageWithLogo from '../../components/PageWithLogo';
 import { Button } from 'components/Buttons';
 import Input from 'components/Input';
 import { Color } from 'lib/themes/interface';
@@ -41,7 +42,7 @@ const Login: FC = (): ReactElement => {
   };
 
   return (
-    <Page color={Color.black} background='#ffffff'>
+    <PageWithLogo>
       <Main>
         <Div
           width='inherit'
@@ -143,7 +144,7 @@ const Login: FC = (): ReactElement => {
           </P>
         </Div>
       </Main>
-    </Page>
+    </PageWithLogo>
   );
 };
 

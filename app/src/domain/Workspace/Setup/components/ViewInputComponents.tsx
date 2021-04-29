@@ -70,7 +70,7 @@ const firstInputOnClick = async ({
   changeCheckerState(setView, viewHolder, checkBoxData, setCheckBoxData, 0);
 };
 
-export const FirstInputComponent = ({
+export const NameInputComponent = ({
   viewHolder,
   formState,
   setFormState,
@@ -144,7 +144,7 @@ export const FirstInputComponent = ({
   );
 };
 
-export const SecondInputComponent = ({
+export const UrlInputComponent = ({
   viewHolder,
   formState,
   setFormState,
@@ -264,7 +264,7 @@ export const SecondInputComponent = ({
   return <InputFormContainer viewHolder={viewHolder} input={input} />;
 };
 
-export const ThirdInputComponent = ({
+export const EmailInputComponent = ({
   viewHolder,
   formState,
   setFormState,

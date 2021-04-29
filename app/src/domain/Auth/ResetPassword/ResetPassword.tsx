@@ -2,6 +2,7 @@ import React, { FC, ReactElement, BaseSyntheticEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import PageWithLogo from '../../components/PageWithLogo';
 import { Div, H1, Page, Space, P, Span } from 'components/Styles';
 import { Button } from 'components/Buttons';
 import Input from 'components/Input';
@@ -25,7 +26,7 @@ const ResetPassword: FC = (): ReactElement => {
   };
 
   return (
-    <Page color={Color.black} background='#ffffff'>
+    <PageWithLogo>
       <Main>
         <Div
           width='inherit'
@@ -147,7 +148,7 @@ const ResetPassword: FC = (): ReactElement => {
           </RenderIf>
         </Div>
       </Main>
-    </Page>
+    </PageWithLogo>
   );
 };
 

@@ -3,15 +3,19 @@ import React from 'react';
 import { Div, H1, P, Space } from 'components/Styles/Element';
 import RenderIf from 'components/RenderIf';
 import { ICheckBox } from '../interfaces';
-
-const CheckerInfoList = ({ checkBoxData }: { checkBoxData: ICheckBox }) => {
+import { Color } from 'lib/themes/interface';
+const CheckerInfoList = ({ checkBoxData, activeView }: { checkBoxData: ICheckBox, activeView: number }) => {
   return (
     <Div className="aside-checkbox-details-container" width="244px">
-      {checkBoxData.views.map(({ title, description }, i) => (
+      <Space height="8px" />
+      {checkBoxData.views.map(({ title, description, active }, i) => (
         <Div key={i}>
-          <CheckerInfo title={title} description={description} />
-          <RenderIf isTrue={checkBoxData.views.length - 1 > i}>
+          <CheckerInfo title={title} description={description} index={i} active={activeView} />
+          <RenderIf isTrue={i !== 1}>
             <Space height="56px" />
+          </RenderIf>
+          <RenderIf isTrue={i === 1}>
+            <Space height="40px" />
           </RenderIf>
         </Div>
       ))}
@@ -22,17 +26,22 @@ const CheckerInfoList = ({ checkBoxData }: { checkBoxData: ICheckBox }) => {
 const CheckerInfo = ({
   title,
   description,
+  index,
+  active
 }: {
   title: string;
   description: string;
+  index: number;
+  active: number;
 }) => {
+  // themes.colors.midnight0
   return (
-    <Div>
+    <Div color={active === index ? Color.midnight0 : Color.steele0}>
       <H1
         fontSize="14px"
         lineHeight="16px"
         fontWeight="500px"
-        style={{ color: '#2F353D' }}
+        style={{ color: 'inherit' }}
       >
         {title}
       </H1>
@@ -41,7 +50,7 @@ const CheckerInfo = ({
         fontSize="12px"
         lineHeight="16px"
         fontWeight="400px"
-        style={{ color: '#2F353D' }}
+        style={{ color: 'inherit' }}
       >
         {description}
       </P>

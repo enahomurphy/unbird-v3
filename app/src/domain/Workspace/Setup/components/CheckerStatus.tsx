@@ -18,7 +18,7 @@ const CheckerStatus = ({ formState, viewHolder }: CheckerStatus) => {
     <Div
       className="aside-checkbox-inner-container"
       marginTop="5px"
-      width="22px"
+      width="40px"
       display="flex"
       flexDirection="column"
       alignItems="center"

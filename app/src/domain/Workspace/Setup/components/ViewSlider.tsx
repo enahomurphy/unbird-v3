@@ -47,6 +47,7 @@ const ViewSlider = ({ children, viewHolder, setView, isActiveNextPrevButtons }: 
         onClick={handlePrevView}
         border="1px solid #778594"
         borderRadius="8px"
+        height="35px"
         color="#74787E"
       >
         {'< Prev'}
