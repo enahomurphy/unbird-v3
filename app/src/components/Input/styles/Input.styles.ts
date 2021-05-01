@@ -9,7 +9,7 @@ export const CustomInput = styled.div<{ widthAttr?: string, heightAttr?: string,
     background: ${({ theme }) => theme.colors.white};
     border: ${({ theme, errorMessage }) => `1px solid ${ errorMessage? theme.colors.pinkTint200 : theme.colors.tiara}`};
     box-sizing: border-box;
-    border-radius: ${({ borderRadius }) => borderRadius? borderRadius : '44px' };
+    border-radius: ${({ borderRadius }) => borderRadius? borderRadius : '8px' };
     z-index: 5;
     width: ${({ widthAttr }) => widthAttr ? widthAttr : '100%'};
     height: ${({ heightAttr }) => heightAttr ? heightAttr : ''};

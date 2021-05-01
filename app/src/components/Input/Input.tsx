@@ -1,5 +1,6 @@
-import { Div, Span } from 'components/Styles';
-import React, { memo, FC, useEffect, useState } from 'react';
+import React, { memo, FC, useEffect, useState, CSSProperties } from 'react';
+
+import { Div, Span, Space } from 'components/Styles';
 import RenderIf from 'components/RenderIf/RenderIf';
 import { CustomInput, InputErrorMessage, SuccessMessage } from './styles';
 import { CircularLoader } from 'components/Loader';
@@ -23,6 +24,7 @@ export interface InputProps {
   renderLoader?: boolean;
   inputSide?: any;
   successMessage?: string;
+  sideView?: boolean;
 }
 
 const Input: FC<InputProps> = ({
@@ -43,6 +45,7 @@ const Input: FC<InputProps> = ({
   renderLoader = false,
   inputSide,
   successMessage,
+  sideView
 }) => {
   const [successMsg, setSuccessMsg] = useState(successMessage);
   useEffect(() => {
@@ -55,6 +58,12 @@ const Input: FC<InputProps> = ({
     return () => clearTimeout(timer);
   }, [successMessage]);
 
+  const style = {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  } as CSSProperties;
+
   return (
     <CustomInput
       widthAttr={widthAttr}
@@ -62,47 +71,53 @@ const Input: FC<InputProps> = ({
       borderRadius={inputSide ? '12px 0 0 12px' : borderRadius}
       textAlign={textAlign}
       errorMessage={errorMessage}
+      style={ sideView && style}
     >
       <RenderIf isTrue={renderTitle}>
         <Span
-          fontSize="12px"
+          fontSize="14px"
           lineHeight="20px"
-          textAlign="initial"
-          marginBottom="8px"
+          textAlign={sideView ? 'right' : 'initial'}
+          marginBottom={!sideView && '8px'}
+          marginTop={sideView && '15px'}
           color={Color.greyishNavy}
+          minWidth={sideView ? '170px' : ''}
+          marginRight='24px'
         >
           {title}
         </Span>
       </RenderIf>
-      <Div display="flex" alignItems="center">
-        <input
-          type={type}
-          name={name}
-          value={value}
-          placeholder={placeholder}
-          onChange={onInputChange}
-          maxLength={maxLength}
-          ref={register}
-        />
-        {inputSide}
-        <RenderIf isTrue={renderLoader}>
-          <Div marginLeft="20px">
-            <CircularLoader color={Color.unbirdBlue} />
+      <Div>
+        <Div display="flex" alignItems="center">
+          <input
+            type={type}
+            name={name}
+            value={value}
+            placeholder={placeholder}
+            onChange={onInputChange}
+            maxLength={maxLength}
+            ref={register}
+          />
+          {inputSide}
+          <RenderIf isTrue={renderLoader}>
+            <Div marginLeft="20px">
+              <CircularLoader color={Color.unbirdBlue} />
+            </Div>
+          </RenderIf>
+        </Div>
+        <RenderIf isTrue={Boolean(errorMessage)}>
+          <Div position="relative">
+            <InputErrorMessage widthAttr={widthAttr}>
+              {errorMessage}
+            </InputErrorMessage>
           </Div>
         </RenderIf>
-      </Div>
-      <RenderIf isTrue={Boolean(errorMessage)}>
-        <Div position="relative">
-          <InputErrorMessage widthAttr={widthAttr}>
-            {errorMessage}
-          </InputErrorMessage>
+        <RenderIf isTrue={Boolean(successMsg)}>
+          <Div position="relative">
+            <SuccessMessage widthAttr={widthAttr}>{successMsg}</SuccessMessage>
+          </Div>
+        </RenderIf>
         </Div>
-      </RenderIf>
-      <RenderIf isTrue={Boolean(successMsg)}>
-        <Div position="relative">
-          <SuccessMessage widthAttr={widthAttr}>{successMsg}</SuccessMessage>
-        </Div>
-      </RenderIf>
     </CustomInput>
   );
 };

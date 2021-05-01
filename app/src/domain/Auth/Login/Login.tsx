@@ -41,8 +41,24 @@ const Login: FC = (): ReactElement => {
     }
   };
 
+  const SignupButton = (
+    <Link
+      to='/signup'
+      style={{ textDecoration: 'none', color: '#666', fontWeight: 700 }}
+    >
+      <Button
+        border='1.5px solid #DADDE0'
+        background='white'
+        borderRadius='8px'
+        color={Color.steele0}
+      >
+        Create Workspace
+      </Button>
+    </Link>
+  );
+
   return (
-    <PageWithLogo>
+    <PageWithLogo rightItem={SignupButton}>
       <Main>
         <Div
           width='inherit'
@@ -77,8 +93,8 @@ const Login: FC = (): ReactElement => {
             </Div>
             <Space height='8px' />
           </RenderIf> */}
-          <Space height='17px' />
-          <Div className='form-content' width='30%'>
+          <Space height='40px' />
+          <Div className='form-content' width='39%'>
             <Div className='form-input-container'>
               <Input
                 errorMessage={errors.email?.message}
@@ -87,7 +103,9 @@ const Login: FC = (): ReactElement => {
                 name='email'
                 register={register}
                 placeholder='johndoe@gmail.com'
+                heightAttr='48px'
               />
+              <Space />
               <Input
                 errorMessage={errors.password?.message}
                 title='Password'
@@ -95,22 +113,24 @@ const Login: FC = (): ReactElement => {
                 register={register}
                 name='password'
                 placeholder='password'
+                heightAttr='48px'
               />
             </Div>
-            <Space height='32px' />
+            <Space height='24px' />
             <Button
               background='#18C1E0'
               width='100%'
-              borderRadius='10px'
+              borderRadius='12px'
               textTransform='uppercase'
               padding='12px 24px'
               color={Color.white}
               onClick={handleSubmit(loginUser)}
               disabled={loading}
+              height='56px'
             >
               {translate('login.login')}
             </Button>
-            <Space height='32px' />
+            <Space height='64px' />
           </Div>
           <P
             fontWeight='400'
@@ -125,22 +145,6 @@ const Login: FC = (): ReactElement => {
             >
               {translate('login.lostPassword.here')}
             </Link>
-          </P>
-          <Space height='8px' />
-          <P
-            fontWeight='400'
-            fontSize='14px'
-            lineHeight='14px'
-            color={Color.darkAsh}
-          >
-            New here?{' '}
-            <Link
-              to='/signup'
-              style={{ textDecoration: 'none', color: '#666', fontWeight: 700 }}
-            >
-              Create a new workspace
-            </Link>{' '}
-            for your organization
           </P>
         </Div>
       </Main>

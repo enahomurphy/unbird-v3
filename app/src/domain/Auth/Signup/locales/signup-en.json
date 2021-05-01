@@ -1,5 +1,5 @@
 {
-  "signupText": "Your products have great potentials! Let’s propel them into space",
+  "signupText": "Unbird helps you aggregate product feedback and make sense of it.",
   "signupBtnText": "CREATE WORKSPACE",
   "placeholder": {
     "company": "Company name",
@@ -12,5 +12,5 @@
     "lastName": "Last name"
   },
   "toLogin": "Back to Login",
-  "tryUnbird": "Try Unbird for free!"
+  "tryUnbird": "Create a workspace for free"
 }
