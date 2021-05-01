@@ -39,7 +39,7 @@ const Button: FC<ButtonProps> = ({
   margin,
 }): ReactElement => {
   const theme = useTheme();
-  const ButtonIcon = icon ? Icons['Add'] : null;
+  const ButtonIcon = icon ? Icons[icon] : null;
 
   return (
     <BaseButton

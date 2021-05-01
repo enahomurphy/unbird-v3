@@ -148,7 +148,6 @@ const WorkspaceSetup: FC = (): ReactElement => {
     <Page
       display="flex"
       width={formState.formCompleted ? '100%' : '1440px'}
-      // marginTop="51px"
     >
       <RenderIf isTrue={!formState.formCompleted}>
         <>

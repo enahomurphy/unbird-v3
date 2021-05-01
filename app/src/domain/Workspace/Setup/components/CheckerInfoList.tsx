@@ -34,7 +34,6 @@ const CheckerInfo = ({
   index: number;
   active: number;
 }) => {
-  // themes.colors.midnight0
   return (
     <Div color={active === index ? Color.midnight0 : Color.steele0}>
       <H1
