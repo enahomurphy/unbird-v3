@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import PageWithLogo from '../../components/PageWithLogo';
 import { Div, H1, Page, Space, P } from 'components/Styles';
 import { Button } from 'components/Buttons';
 import Input from 'components/Input';
@@ -37,14 +38,32 @@ const Signup: FC = (): ReactElement => {
         variables: { firstName, lastName, email, password, jobTitle },
       });
       storage.setToken(signup.token);
-      history.push('/');
+      history.push('/workspace/setup');
     } catch (e) {
       console.log(e);
     }
   };
 
+  const LoginButton = (
+    <Link
+      to="/login"
+      style={{ textDecoration: 'none', color: '#666', fontWeight: 700 }}
+    >
+      <Button
+        border="1.5px solid #DADDE0"
+        background="white"
+        borderRadius="8px"
+        color={Color.steele0}
+        width='75px'
+        height='35px'
+      >
+        Log In
+      </Button>
+    </Link>
+  );
+
   return (
-    <Page color={Color.black} background="#ffffff">
+    <PageWithLogo rightItem={LoginButton}>
       <Main>
         <Div
           width="inherit"
@@ -52,21 +71,21 @@ const Signup: FC = (): ReactElement => {
           flexDirection="column"
           alignItems="center"
         >
+          <H1 fontSize="24px" color={Color.black} lineHeight="32px">
+            {translate('signup.tryUnbird')}
+          </H1>
+          <Space height="8px" />
           <P
             className="signup-text1"
             color={Color.black}
             width="396px"
-            fontSize="18px"
+            fontSize="16px"
             lineHeight="24px"
           >
             {translate('signup.signupText')}
           </P>
-          <Space height="16px" />
-          <H1 fontSize="24px" color={Color.black}>
-            {translate('signup.tryUnbird')}
-          </H1>
-          <Space height="32px" />
-          <Div className="form-content" width="30%">
+          <Space height="40px" />
+          <Div className="form-content" width="555px">
             <form className="form-input-container">
               <Input
                 errorMessage={errors.firstName?.message}
@@ -74,21 +93,33 @@ const Signup: FC = (): ReactElement => {
                 name="firstName"
                 register={register}
                 placeholder={translate('signup.placeholder.firstName')}
+                sideView={true}
+                widthAttr="392px"
+                heightAttr="48px"
               />
+              <Space />
               <Input
                 errorMessage={errors.lastName?.message}
                 title="Last name"
                 name="lastName"
                 register={register}
                 placeholder={translate('signup.placeholder.lastName')}
+                sideView={true}
+                widthAttr="392px"
+                heightAttr="48px"
               />
+              <Space />
               <Input
                 errorMessage={errors.email?.message}
                 title="Email Address"
                 name="email"
                 register={register}
                 placeholder={translate('signup.placeholder.email')}
+                sideView={true}
+                widthAttr="392px"
+                heightAttr="48px"
               />
+              <Space />
               <Input
                 errorMessage={errors.password?.message}
                 title="Password"
@@ -96,7 +127,11 @@ const Signup: FC = (): ReactElement => {
                 name="password"
                 register={register}
                 placeholder={translate('signup.placeholder.password')}
+                sideView={true}
+                widthAttr="392px"
+                heightAttr="48px"
               />
+              <Space />
               <Input
                 errorMessage={errors.confirmPassword?.message}
                 title="Confirm password"
@@ -104,46 +139,42 @@ const Signup: FC = (): ReactElement => {
                 name="confirmPassword"
                 register={register}
                 placeholder={translate('signup.placeholder.confirmPassword')}
+                sideView={true}
+                widthAttr="392px"
+                heightAttr="48px"
               />
+              <Space />
               <Input
                 errorMessage={errors.jobTitle?.message}
                 title={translate('signup.placeholder.job')}
                 name="jobTitle"
                 register={register}
                 placeholder={translate('signup.placeholder.job')}
+                sideView={true}
+                widthAttr="392px"
+                heightAttr="48px"
               />
+              <Space height="32px" />
+              <Button
+                background="#18C1E0"
+                width="392px"
+                height="56px"
+                borderRadius="10px"
+                textTransform="uppercase"
+                padding="12px 24px"
+                color={Color.white}
+                onClick={handleSubmit(signupUser)}
+                disabled={loading}
+                margin='0 180px'
+              >
+                {translate('signup.signupBtnText')}
+              </Button>
             </form>
             <Space height="32px" />
-            <Button
-              background="#18C1E0"
-              width="100%"
-              borderRadius="10px"
-              textTransform="uppercase"
-              padding="12px 24px"
-              color={Color.white}
-              onClick={handleSubmit(signupUser)}
-              disabled={loading}
-            >
-              {translate('signup.signupBtnText')}
-            </Button>
-            <Space height="32px" />
           </Div>
-          <P
-            fontWeight="400"
-            fontSize="14px"
-            lineHeight="14px"
-            color={Color.darkAsh}
-          >
-            <Link
-              to="/login"
-              style={{ textDecoration: 'none', color: '#666', fontWeight: 700 }}
-            >
-              {translate('signup.toLogin')}
-            </Link>
-          </P>
         </Div>
       </Main>
-    </Page>
+    </PageWithLogo>
   );
 };
 

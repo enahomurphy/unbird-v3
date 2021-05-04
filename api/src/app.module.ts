@@ -13,6 +13,7 @@ import { SmsModule } from 'src/core/sms/sms.module';
 import { RedisModule } from './core/database/redis.module';
 
 import { UserModule } from './users';
+import { WorkspaceModule } from './workspace/workspace.module';
 
 @Module({
   providers: [RolesProvider, DateScalar, EmailModule],
@@ -41,6 +42,7 @@ import { UserModule } from './users';
     SmsModule,
     DatabaseModule,
     UserModule,
+    WorkspaceModule,
   ],
 })
 export class AppModule implements OnModuleInit {

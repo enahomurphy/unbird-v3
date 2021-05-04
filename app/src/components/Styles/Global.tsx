@@ -7,11 +7,13 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: ${({ theme }) => theme.fontFamily.primary};
     background-color: ${({ theme }) => theme.colors.white};
+    height: 100%;
   }
   html {
     box-sizing: border-box;
     font-size: 16px;
     background-color: ${({ theme }) => theme.colors.white};
+    height: 100%;
   }
 
   *, *:before, *:after {

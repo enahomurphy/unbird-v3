@@ -64,6 +64,7 @@ export interface StyledTextProps {
   zIndex?: number;
   opacity?: number;
   background?: string;
+  flexWrap?: 'inherit' | 'initial' | 'no-wrap' | 'wrap' | 'revert' | 'unset' | 'wrap-reverse'; 
 }
 
 export interface ElementProps extends StyledTextProps {
@@ -119,6 +120,7 @@ const base = css`
       'background',
       'opacity',
       'minWidth',
+      'flexWrap',
     ];
 
     keys.forEach((key) => {
@@ -171,11 +173,24 @@ export const H1 = styled('h1')<StyledTextProps>`
   ${() => base}
 `;
 
+export const H3 = styled('h1')<StyledTextProps>`
+  ${() => base}
+  font-size: 24px;
+`;
+
 export default { Div };
 
 export const Space = styled.div<{ height?: string }>`
   width: 100%;
   height: ${(props) => props.height};
+`;
+
+export const Aside = styled.aside<StyledTextProps>`
+  ${() => base}
+`;
+
+export const Main = styled.main<StyledTextProps>`
+  ${() => base}
 `;
 
 Space.defaultProps = {

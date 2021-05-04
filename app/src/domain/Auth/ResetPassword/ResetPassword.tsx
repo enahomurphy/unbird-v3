@@ -2,6 +2,7 @@ import React, { FC, ReactElement, BaseSyntheticEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+import PageWithLogo from '../../components/PageWithLogo';
 import { Div, H1, Page, Space, P, Span } from 'components/Styles';
 import { Button } from 'components/Buttons';
 import Input from 'components/Input';
@@ -24,8 +25,26 @@ const ResetPassword: FC = (): ReactElement => {
     return setData({ ...data, [field]: event.target.value });
   };
 
+  const LoginButton = (
+    <Link
+      to="/login"
+      style={{ textDecoration: 'none', color: '#666', fontWeight: 700 }}
+    >
+      <Button
+        border="1.5px solid #DADDE0"
+        background="white"
+        borderRadius="8px"
+        color={Color.steele0}
+        width='75px'
+        height='35px'
+      >
+        Log In
+      </Button>
+    </Link>
+  );
+
   return (
-    <Page color={Color.black} background='#ffffff'>
+    <PageWithLogo rightItem={LoginButton}>
       <Main>
         <Div
           width='inherit'
@@ -48,7 +67,7 @@ const ResetPassword: FC = (): ReactElement => {
               {translate('resetpassword.resetMessage')}
             </P>
             <Space height='17px' />
-            <Div className='form-content' width='30%'>
+            <Div className='form-content' width='40%'>
               <Div className='form-input-container'>
                 <Input
                   errorMessage=''
@@ -59,38 +78,23 @@ const ResetPassword: FC = (): ReactElement => {
                   }
                   value={data.email}
                   placeholder='johndoe@gmail.com'
+                  widthAttr="392px"
+                  heightAttr="48px"
                 />
               </Div>
-              <Space height='32px' />
+              <Space height='24px' />
               <Button
                 background='#18C1E0'
-                width='100%'
                 borderRadius='10px'
                 textTransform='uppercase'
                 padding='12px 24px'
                 color={Color.white}
+                width="392px"
+                height="56px"
               >
                 {translate('resetpassword.reset')}
               </Button>
-              <Space height='32px' />
             </Div>
-            <P
-              fontWeight='400'
-              fontSize='14px'
-              lineHeight='14px'
-              color={Color.darkAsh}
-            >
-              <Link
-                to='/login'
-                style={{
-                  textDecoration: 'none',
-                  color: '#666',
-                  fontWeight: 700,
-                }}
-              >
-                {translate('resetpassword.backToLogin')}
-              </Link>{' '}
-            </P>
           </RenderIf>
           <RenderIf isTrue={data.recoverySent}>
             <Div
@@ -147,7 +151,7 @@ const ResetPassword: FC = (): ReactElement => {
           </RenderIf>
         </Div>
       </Main>
-    </Page>
+    </PageWithLogo>
   );
 };
 

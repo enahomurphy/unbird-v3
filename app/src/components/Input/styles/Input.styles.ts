@@ -1,20 +1,29 @@
 import styled from 'styled-components';
 
-export const CustomInput = styled.div`
+export const CustomInput = styled.div<{
+  widthAttr?: string;
+  heightAttr?: string;
+  borderRadius?: string;
+  textAlign?: string;
+  errorMessage?: string;
+}>`
   display: flex;
   flex-direction: column;
-
-  &:not(:first-of-type) {
-    margin-top: 16px;
-  }
 
   input {
     height: 38px;
     background: ${({ theme }) => theme.colors.white};
-    border: ${({ theme }) => `1px solid ${theme.colors.tiara}`};
+    border: ${({ theme, errorMessage }) =>
+      `1px solid ${
+        errorMessage ? theme.colors.pinkTint200 : theme.colors.tiara
+      }`};
     box-sizing: border-box;
-    border-radius: 44px;
+    border-radius: ${({ borderRadius }) =>
+      borderRadius ? borderRadius : '8px'};
     z-index: 5;
+    width: ${({ widthAttr }) => (widthAttr ? widthAttr : '100%')};
+    height: ${({ heightAttr }) => (heightAttr ? heightAttr : '')};
+    text-align: ${({ textAlign }) => (textAlign ? textAlign : '')};
 
     &[type] {
       color: ${({ theme }) => theme.colors.licorice};
@@ -43,9 +52,8 @@ export const ErrorMessage = styled.div`
   padding: 8px 15px;
   border-radius: 0 0 20px 20px;
   font-size: 12px;
-  Line-height: 14px;
-  color: #E86262;
-
+  line-height: 14px;
+  color: #e86262;
 
   &::before {
     content: ' ';
@@ -55,7 +63,7 @@ export const ErrorMessage = styled.div`
     margin-left: -3px;
     border-width: 10px;
     border-style: solid;
-    border-color: #FAEAEA;
+    border-color: #faeaea;
   }
 
   &::after {
@@ -66,6 +74,36 @@ export const ErrorMessage = styled.div`
     margin-left: -17px;
     border-width: 10px;
     border-style: solid;
-    border-color: #FAEAEA;
+    border-color: #faeaea;
   }
+`;
+
+export const InputErrorMessage = styled.div<{ widthAttr?: string }>`
+  background-color: ${({ theme }) => theme.colors.inputError};
+  width: ${({ widthAttr }) => (widthAttr ? widthAttr : '100%')};
+  height: 40px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #e86262;
+  margin-top: 8px;
+`;
+
+export const SuccessMessage = styled.div<{ widthAttr?: string }>`
+  background-color: ${({ theme }) => theme.colors.greenTint500};
+  width: ${({ widthAttr }) => (widthAttr ? widthAttr : '100%')};
+  height: 40px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #213245;
+  margin-top: 8px;
 `;

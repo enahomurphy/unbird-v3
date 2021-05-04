@@ -33,9 +33,14 @@ const Button: FC<ButtonProps> = ({
   hoverColor,
   hoverBackground,
   disabled,
+  visibility = 'visible',
+  border,
+  marginTop,
+  margin,
 }): ReactElement => {
   const theme = useTheme();
   const ButtonIcon = icon ? Icons[icon] : null;
+
   return (
     <BaseButton
       onClick={onClick}
@@ -53,6 +58,10 @@ const Button: FC<ButtonProps> = ({
       iconMargin={iconMargin}
       hoverColor={hoverColor}
       hoverBackground={hoverBackground}
+      visibility={visibility}
+      border={border}
+      marginTop={marginTop}
+      margin={margin}
     >
       {ButtonIcon && (
         <ButtonIcon

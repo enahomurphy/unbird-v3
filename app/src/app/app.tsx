@@ -26,8 +26,7 @@ const App: FC = ({ children }): ReactElement => {
               <GlobalStyle />
               <ToastContainer />
               <Router>
-                <Div padding='21px 32px'>
-                  <Unbird />
+                <Div>
                   {children}
                 </Div>
               </Router>
