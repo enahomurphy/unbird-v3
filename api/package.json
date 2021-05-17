@@ -43,6 +43,7 @@
     "graphql-tools": "^7.0.2",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
+    "mongodb": "^3.6.6",
     "nestjs-redis": "^1.2.8",
     "nexmo": "^2.9.1",
     "node-pg-migrate": "^5.9.0",

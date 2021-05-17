@@ -6,7 +6,6 @@ import { RedisService } from 'nestjs-redis';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto, TokenRes, UserLoginDTO } from '../dtos/users.dtos';
 import { User } from '../models/users.model';
-import { generateOTP } from 'src/core/utils/opt';
 import { Transaction } from 'sequelize/types';
 import { sign } from 'src/core/utils/jwt';
 import { isValidPassword } from 'src/core/utils/password';
