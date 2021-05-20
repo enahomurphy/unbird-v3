@@ -1,4 +1,4 @@
-import { Column, DataType, Model, Table, HasOne } from 'sequelize-typescript';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { SourceType } from 'src/core/types/enums/source-types.enum';
 
@@ -8,9 +8,17 @@ export class Dataset extends Model {
   @Field(() => Int, { nullable: true })
   id?: string;
 
-  @Field(() => SourceType, { nullable: true })
+  @Field(() => SourceType)
   @Column({
-    type: DataType.ENUM<SourceType>(),
+    type: DataType.ENUM(
+      SourceType.API,
+      SourceType.APP_STORE,
+      SourceType.CSV,
+      SourceType.PENDO,
+      SourceType.ZAPIER,
+      SourceType.SLACK,
+      SourceType.ZENDESK,
+    ),
     field: 'owner_id'
   })
   sourceType?: SourceType;

@@ -59,9 +59,13 @@ export class Feedback extends Model {
   })
   date?: Date;
 
-  @Field(() => FeedbackStatus, { nullable: true })
+  @Field(() => FeedbackStatus)
   @Column({
-    type: DataType.ENUM<FeedbackStatus>(),
+    type: DataType.ENUM<FeedbackStatus>(
+      FeedbackStatus.ARCHIVE,
+      FeedbackStatus.DELETE,
+      FeedbackStatus.OPEN,
+    ),
     field: 'status'
   })
   status?: FeedbackStatus;
@@ -74,12 +78,12 @@ export class Feedback extends Model {
   externalId?: string;
 
 
-  @Field(() => Object, { nullable: true })
+  @Field(() => String, { nullable: true })
   @Column({
     type: DataType.JSONB,
     field: 'properties'
   })
-  properties?: object;
+  properties?: String;
 
 
   @Field(() => Date, { nullable: true })

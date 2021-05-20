@@ -1,6 +1,6 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { Logger } from '@nestjs/common';
-import { Dataset } from '../model/datasets';
+import { Dataset } from '../models/datasets';
 import { DatasetRepo } from '../repo/datasets.repo';
 
 
@@ -14,8 +14,7 @@ export class DatasetMutationResolver {
   private readonly logger = new Logger(DatasetMutationResolver.name);
 
   @Mutation(() => Dataset)
-  async getDataset(@Args('id') id: number) {
-    this.logger.log('logger');
-    return this.datasetRepo.get(id);
+  async createDataset() {
+    this.logger.log('create Dataset');
   }
 }

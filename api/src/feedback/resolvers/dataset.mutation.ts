@@ -1,6 +1,6 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
 import { Logger } from '@nestjs/common';
-import { Feedback } from '../model/feedback';
+import { Feedback } from '../models/feedback';
 import { FeedbackRepo } from '../repo/feedback.repo';
 
 
@@ -14,7 +14,7 @@ export class DatasetMutationResolver {
   private readonly logger = new Logger(DatasetMutationResolver.name);
 
   @Mutation(() => Feedback)
-  async getDataset(@Args('id') id: number) {
+  async createFeedback(@Args('id') id: number) {
     this.logger.log('logger');
     return this.feedback.get(id);
   }

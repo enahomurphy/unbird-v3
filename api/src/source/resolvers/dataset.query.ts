@@ -1,6 +1,6 @@
 import { Args, Resolver, Query } from '@nestjs/graphql';
 import { Logger } from '@nestjs/common';
-import { Dataset } from '../model/datasets';
+import { Dataset } from '../models/datasets';
 import { DatasetRepo } from '../repo/datasets.repo';
 
 
@@ -14,7 +14,7 @@ export class DatasetQueryResolver {
   private readonly logger = new Logger(DatasetQueryResolver.name);
 
   @Query(() => Dataset)
-  async createDataset(@Args('id') id: number) {
+  async getDataset(@Args('id') id: number) {
     this.logger.log('logger');
     return this.datasetRepo.get(id);
   }

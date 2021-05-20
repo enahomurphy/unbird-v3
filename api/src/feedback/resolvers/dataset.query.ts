@@ -1,6 +1,6 @@
 import { Args, Resolver, Query } from '@nestjs/graphql';
 import { Logger,  } from '@nestjs/common';
-import { Feedback } from '../model/feedback';
+import { Feedback } from '../models/feedback';
 import { FeedbackRepo } from '../repo/feedback.repo';
 
 

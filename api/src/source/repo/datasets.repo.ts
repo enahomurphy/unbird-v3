@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Dataset } from '../model/datasets';
+import { Dataset } from '../models/datasets';
 
 
 @Injectable()

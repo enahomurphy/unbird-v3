@@ -14,6 +14,8 @@ import { RedisModule } from './core/database/redis.module';
 
 import { UserModule } from './users';
 import { WorkspaceModule } from './workspace/workspace.module';
+import { SourceModule } from './source';
+import { FeedbackModule } from './feedback';
 
 @Module({
   providers: [RolesProvider, DateScalar, EmailModule],
@@ -43,6 +45,8 @@ import { WorkspaceModule } from './workspace/workspace.module';
     DatabaseModule,
     UserModule,
     WorkspaceModule,
+    SourceModule,
+    FeedbackModule,
   ],
 })
 export class AppModule implements OnModuleInit {

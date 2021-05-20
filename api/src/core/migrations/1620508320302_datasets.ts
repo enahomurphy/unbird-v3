@@ -42,4 +42,7 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
   );
 }
 
-export async function down(pgm: MigrationBuilder): Promise<void> {}
+export async function down(pgm: MigrationBuilder): Promise<void> {
+  pgm.dropTable('datasets');
+  pgm.dropType('source_type');
+}
