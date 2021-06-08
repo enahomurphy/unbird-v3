@@ -1,4 +1,4 @@
-import { Column, DataType, Model, Table, HasOne } from 'sequelize-typescript';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { Field, ObjectType } from '@nestjs/graphql';
 import { hashPassword } from 'src/core/utils/password';
 
@@ -34,14 +34,14 @@ export class User extends Model {
     type: DataType.BOOLEAN,
     field: 'is_verified',
   })
-  isVerified?: Boolean;
+  isVerified?: boolean;
 
   @Field(() => String, { nullable: true })
   @Column({
     type: DataType.STRING,
     field: 'job_title',
   })
-  jobTitle?: string
+  jobTitle?: string;
 
   @Column({
     type: DataType.STRING,
@@ -58,7 +58,6 @@ export class User extends Model {
     field: 'last_active',
   })
   lastActive?: string;
-
 
   @Field(() => String, { nullable: true })
   @Column(DataType.VIRTUAL)

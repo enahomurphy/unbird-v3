@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import { MigrationBuilder, ColumnDefinitions } from 'node-pg-migrate';
 
 export const shorthands: ColumnDefinitions | undefined = undefined;
@@ -14,7 +13,7 @@ export async function up(pgm: MigrationBuilder): Promise<void> {
     date: { type: 'date' },
     status: { type: 'feedback_status', default: 'open' },
     external_id: { type: 'string' },
-    properties:{ type: 'jsonb' },
+    properties: { type: 'jsonb' },
     dataset_id: {
       type: 'integer',
       references: 'datasets',

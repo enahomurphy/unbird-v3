@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Feedback } from '../models/feedback';
 
-
 @Injectable()
 export class FeedbackRepo {
   constructor(
@@ -12,5 +11,4 @@ export class FeedbackRepo {
   get(id: number): Promise<Feedback> {
     return this.feedback.findByPk(id);
   }
-
 }

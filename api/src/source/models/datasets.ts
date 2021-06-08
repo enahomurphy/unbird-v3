@@ -19,21 +19,21 @@ export class Dataset extends Model {
       SourceType.SLACK,
       SourceType.ZENDESK,
     ),
-    field: 'owner_id'
+    field: 'owner_id',
   })
   sourceType?: SourceType;
 
   @Field(() => Int, { nullable: true })
   @Column({
     type: DataType.INTEGER,
-    field: 'workspace_id'
+    field: 'workspace_id',
   })
   workspaceId?: number;
 
   @Field(() => Int, { nullable: true })
   @Column({
     type: DataType.INTEGER,
-    field: 'creator_id'
+    field: 'creator_id',
   })
   creatorId?: number;
 

@@ -1,17 +1,14 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 
-import { Feedback } from './models/feedback'
+import { Feedback } from './models/feedback';
 import { FeedbackRepo } from './repo/feedback.repo';
-import { DatasetMutationResolver } from './resolvers/dataset.mutation';
-import { DatasetQueryResolver } from './resolvers/dataset.query';
+import { FeedbackMutationResolver } from './resolvers/feedback.mutation';
+import { FeedBackQueryResolver } from './resolvers/feedback.query';
 
 @Module({
-  imports: [
-    SequelizeModule.forFeature([Feedback]),
-  ],
-  providers: [DatasetMutationResolver, DatasetQueryResolver, FeedbackRepo],
+  imports: [SequelizeModule.forFeature([Feedback])],
+  providers: [FeedbackMutationResolver, FeedBackQueryResolver, FeedbackRepo],
   exports: [FeedbackRepo],
 })
-
 export class FeedbackModule {}

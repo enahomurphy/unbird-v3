@@ -30,12 +30,13 @@ import { FeedbackModule } from './feedback';
       playground: keys.env !== 'production',
       formatError: (error: GraphQLError) => {
         const graphQLFormattedError: GraphQLFormattedError = {
-          message: error.extensions?.exception?.response?.message
-            || error.extensions?.exception?.errors?.[0]?.message
-            || error.message,
+          message:
+            error.extensions?.exception?.response?.message ||
+            error.extensions?.exception?.errors?.[0]?.message ||
+            error.message,
         };
         return graphQLFormattedError;
-      }
+      },
     }),
     BullModule.forRoot({
       redis: keys.redis.url,

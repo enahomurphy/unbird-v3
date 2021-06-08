@@ -1,15 +1,21 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { WorkspaceService } from './workspace.service';
 import { Workspace } from './models/workspace.model';
-import { CreateWorkspaceInput, CreateWorkspaceRes, DomainSearchInput, DomainSearchRes } from './dto/workspace.dtos';
-import { domain } from 'process';
+import {
+  CreateWorkspaceInput,
+  CreateWorkspaceRes,
+  DomainSearchInput,
+  DomainSearchRes,
+} from './dto/workspace.dtos';
 
 @Resolver(() => Workspace)
 export class WorkspaceResolver {
   constructor(private readonly workspaceService: WorkspaceService) {}
 
   @Mutation(() => CreateWorkspaceRes)
-  createWorkspace(@Args('createWorkspaceInput') createWorkspaceInput: CreateWorkspaceInput): Promise<CreateWorkspaceRes> {
+  createWorkspace(
+    @Args('createWorkspaceInput') createWorkspaceInput: CreateWorkspaceInput,
+  ): Promise<CreateWorkspaceRes> {
     return this.workspaceService.create(createWorkspaceInput);
   }
 
@@ -24,7 +30,9 @@ export class WorkspaceResolver {
   }
 
   @Query(() => DomainSearchRes, { name: 'domainSearch' })
-  async findDomain(@Args('payload') payload: DomainSearchInput): Promise<DomainSearchRes> {
+  async findDomain(
+    @Args('payload') payload: DomainSearchInput,
+  ): Promise<DomainSearchRes> {
     return this.workspaceService.findDomain(payload);
   }
 

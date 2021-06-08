@@ -1,4 +1,8 @@
-import { BadRequestException, ConflictException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+} from '@nestjs/common';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
 import { RedisService } from 'nestjs-redis';
@@ -26,7 +30,10 @@ export class UserService {
     return this.userRepo.findAll();
   }
 
-  async createUser(data: CreateUserDto, transaction?: Transaction): Promise<TokenRes> {
+  async createUser(
+    data: CreateUserDto,
+    transaction?: Transaction,
+  ): Promise<TokenRes> {
     const existingUser = await this.findByEmail(data.email);
     if (existingUser) {
       throw new ConflictException({ message: 'User already exists' });
@@ -37,16 +44,16 @@ export class UserService {
 
     let newUser: User;
     if (transaction) {
-      newUser = await instance.save({ transaction })
+      newUser = await instance.save({ transaction });
     } else {
       newUser = await instance.save();
     }
-    
+
     const token = sign({ userId: newUser.id, workspaceId: 1 });
 
     const client = this.redisService.getClient('redis');
     client.set(`userid-login-token:${newUser.id}`, token);
-    return ({ token });
+    return { token };
   }
 
   findByID(id: string, include = []): Promise<User> {
@@ -65,14 +72,14 @@ export class UserService {
     const user = await this.findByEmail(email);
     if (!user || !isValidPassword(password, user.password)) {
       throw new BadRequestException({
-        message: 'Invalid email and password combination'
+        message: 'Invalid email and password combination',
       });
     }
-    
+
     const token = sign({ userId: user.id, workspaceId: 1 });
 
     const client = this.redisService.getClient('redis');
     client.set(`userid-login-token:${user.id}`, token);
-    return ({ token });
+    return { token };
   }
 }

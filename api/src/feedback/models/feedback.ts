@@ -11,51 +11,49 @@ export class Feedback extends Model {
   @Field(() => Int, { nullable: true })
   @Column({
     type: DataType.INTEGER,
-    field: 'dataset_id'
+    field: 'dataset_id',
   })
   datasetId?: number;
 
   @Field(() => Int, { nullable: true })
   @Column({
     type: DataType.INTEGER,
-    field: 'workspace_id'
+    field: 'workspace_id',
   })
   workspaceId?: number;
 
   @Field(() => Int, { nullable: true })
   @Column({
     type: DataType.INTEGER,
-    field: 'creator_id'
+    field: 'creator_id',
   })
   creatorId?: number;
 
-
   @Field(() => String, { nullable: true })
   @Column({
     type: DataType.TEXT,
-    field: 'title'
+    field: 'title',
   })
   title?: string;
 
-
   @Field(() => String, { nullable: true })
   @Column({
     type: DataType.TEXT,
-    field: 'text'
+    field: 'text',
   })
   text?: string;
 
   @Field(() => Float, { nullable: true })
   @Column({
     type: DataType.FLOAT,
-    field: 'sentiment'
+    field: 'sentiment',
   })
   sentiment?: number;
 
   @Field(() => Date, { nullable: true })
   @Column({
     type: DataType.DATE,
-    field: 'date'
+    field: 'date',
   })
   date?: Date;
 
@@ -66,25 +64,23 @@ export class Feedback extends Model {
       FeedbackStatus.DELETE,
       FeedbackStatus.OPEN,
     ),
-    field: 'status'
+    field: 'status',
   })
   status?: FeedbackStatus;
 
   @Field(() => String, { nullable: true })
   @Column({
     type: DataType.STRING,
-    field: 'external_id'
+    field: 'external_id',
   })
   externalId?: string;
-
 
   @Field(() => String, { nullable: true })
   @Column({
     type: DataType.JSONB,
-    field: 'properties'
+    field: 'properties',
   })
-  properties?: String;
-
+  properties?: string;
 
   @Field(() => Date, { nullable: true })
   @Column({

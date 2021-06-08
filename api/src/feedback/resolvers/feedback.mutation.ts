@@ -3,15 +3,11 @@ import { Logger } from '@nestjs/common';
 import { Feedback } from '../models/feedback';
 import { FeedbackRepo } from '../repo/feedback.repo';
 
-
-
 @Resolver(() => Feedback)
-export class DatasetMutationResolver {
-  constructor(
-    private feedback: FeedbackRepo,
-  ) {}
+export class FeedbackMutationResolver {
+  constructor(private feedback: FeedbackRepo) {}
 
-  private readonly logger = new Logger(DatasetMutationResolver.name);
+  private readonly logger = new Logger(FeedbackMutationResolver.name);
 
   @Mutation(() => Feedback)
   async createFeedback(@Args('id') id: number) {
