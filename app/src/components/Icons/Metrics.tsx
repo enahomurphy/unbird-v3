@@ -6,9 +6,9 @@ interface Props {
   fill?: string;
 }
 
-const ArrowRight: FC<Props> = ({
-  width = '13',
-  height = '14',
+const Metrics: FC<Props> = ({
+  width = '18',
+  height = '18',
   fill = '#778594',
 }): ReactElement => {
   return (
@@ -20,12 +20,12 @@ const ArrowRight: FC<Props> = ({
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M5.65674 1L11.3136 6.65685L5.65674 12.3137"
+        d="M1 17L7.12766 9.51064L9.51064 11.5532L17 1M17 1H10.5319M17 1V7.46808"
         stroke={fill}
-        strokeWidth="1.5"
+        strokeWidth="2"
       />
     </svg>
   );
 };
 
-export default ArrowRight;
+export default Metrics;

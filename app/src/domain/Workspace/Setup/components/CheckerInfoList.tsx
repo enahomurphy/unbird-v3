@@ -39,7 +39,7 @@ const CheckerInfo = ({
       <H1
         fontSize="14px"
         lineHeight="16px"
-        fontWeight="500px"
+        fontWeight="500"
         style={{ color: 'inherit' }}
       >
         {title}

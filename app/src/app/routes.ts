@@ -5,6 +5,7 @@ import {
   Signup,
   ResetPassword,
   WorkspaceSetup,
+  WorkspaceAccount,
 } from 'domain/index';
 
 interface Route {
@@ -42,6 +43,11 @@ export const routes: Route[] = [
   {
     path: '/workspace/setup',
     Component: WorkspaceSetup,
+    exact: true,
+  },
+  {
+    path: '/workspace',
+    Component: WorkspaceAccount,
     exact: true,
   },
   {

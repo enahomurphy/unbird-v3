@@ -45,7 +45,8 @@ const appTheme: DefaultTheme = {
     pinkTint200: '#FAA0A0',
     greenTint500: '#D0F9E8',
     steele0: '#778594',
-    midnight0: '#213245'
+    midnight0: '#213245',
+    red0: '#DB2424'
   },
   fontSizes: {
     header: '22px',
