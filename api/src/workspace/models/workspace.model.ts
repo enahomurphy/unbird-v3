@@ -4,27 +4,27 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript';
 @ObjectType()
 @Table({ modelName: 'workspaces', timestamps: true, updatedAt: true })
 export class Workspace extends Model {
-  @Field(() => Int, { nullable: true})
+  @Field(() => Int, { nullable: true })
   id?: number;
 
   @Field(() => Int, { nullable: true })
   @Column({
     type: DataType.INTEGER,
-    field: 'owner_id'
+    field: 'owner_id',
   })
   ownerId?: number;
 
   @Field(() => String, { nullable: true })
   @Column({
     type: DataType.STRING,
-    field: 'name'
+    field: 'name',
   })
   name?: string;
 
   @Field(() => String, { nullable: true })
   @Column({
     type: DataType.STRING,
-    field: 'domain'
+    field: 'domain',
   })
   domain?: string;
 

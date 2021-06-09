@@ -1,5 +1,11 @@
 import { Field, InputType, ObjectType, Int } from '@nestjs/graphql';
-import { IsEmail, IsString, MaxLength, MinLength, IsNumber } from 'class-validator';
+import {
+  IsEmail,
+  IsString,
+  MaxLength,
+  MinLength,
+  IsNumber,
+} from 'class-validator';
 
 export class UserIdRequestParamsDto {
   @IsString()

@@ -14,6 +14,8 @@ import { RedisModule } from './core/database/redis.module';
 
 import { UserModule } from './users';
 import { WorkspaceModule } from './workspace/workspace.module';
+import { SourceModule } from './source';
+import { FeedbackModule } from './feedback';
 
 @Module({
   providers: [RolesProvider, DateScalar, EmailModule],
@@ -28,12 +30,13 @@ import { WorkspaceModule } from './workspace/workspace.module';
       playground: keys.env !== 'production',
       formatError: (error: GraphQLError) => {
         const graphQLFormattedError: GraphQLFormattedError = {
-          message: error.extensions?.exception?.response?.message
-            || error.extensions?.exception?.errors?.[0]?.message
-            || error.message,
+          message:
+            error.extensions?.exception?.response?.message ||
+            error.extensions?.exception?.errors?.[0]?.message ||
+            error.message,
         };
         return graphQLFormattedError;
-      }
+      },
     }),
     BullModule.forRoot({
       redis: keys.redis.url,
@@ -43,6 +46,8 @@ import { WorkspaceModule } from './workspace/workspace.module';
     DatabaseModule,
     UserModule,
     WorkspaceModule,
+    SourceModule,
+    FeedbackModule,
   ],
 })
 export class AppModule implements OnModuleInit {
