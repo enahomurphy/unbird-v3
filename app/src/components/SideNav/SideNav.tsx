@@ -1,10 +1,12 @@
 import React, { BaseSyntheticEvent, useState } from 'react';
 
+import themes from 'lib/themes'
 import { Div, Space, Span, P } from 'components/Styles';
 import ToolTip from 'components/Tooltip';
 import { UL, LI } from './styles/style';
 import RenderIf from 'components/RenderIf';
 import { Unbird } from 'components/Icons';
+import { OptionProps } from 'components/Select';
 import { DropdownContainer, DropdownContent } from './DropdownContainer';
 
 export interface INavListItemsProps {
@@ -17,13 +19,37 @@ export interface INavListItemsProps {
   id: string;
 }
 
+export interface SideNavItemsProps {
+  shrinkSidebar: boolean;
+  navList: INavListItemsProps[];
+}
+
+interface SideNavListItemHeaderProps {
+  name: string;
+  id: string;
+  index?: number;
+  shrinkSidebar: boolean;
+}
+
+interface SideNavListItemProps extends SideNavListItemHeaderProps {
+  icon: any;
+  header?: boolean;
+  activeState: string;
+  setActiveState: (string) => void;
+}
+
+interface SideNavProps {
+  currentAccount: any;
+  emails: OptionProps [];
+  workspaces: { name: string; icon?: any }[];
+  navList: INavListItemsProps[];
+  shrinkSidebar: boolean;
+}
+
 const SideNavItems = ({
   shrinkSidebar,
   navList,
-}: {
-  shrinkSidebar: boolean;
-  navList: INavListItemsProps[];
-}) => {
+}: SideNavItemsProps) => {
   const [activeState, setActiveState] = useState('dashboard');
 
   const collapseNavList = navList.reduce((acc, curr, i, arr) => {
@@ -56,7 +82,12 @@ const SideNavItems = ({
   );
 };
 
-const SideNavListItemHeader = ({ name, id, index, shrinkSidebar }) => {
+const SideNavListItemHeader = ({
+  name,
+  id,
+  index,
+  shrinkSidebar,
+}: SideNavListItemHeaderProps) => {
   return (
     <LI key={id} marginAttr={shrinkSidebar && '0 auto'}>
       <Space height={index === 0 ? '32px' : '40px'} />
@@ -68,8 +99,15 @@ const SideNavListItemHeader = ({ name, id, index, shrinkSidebar }) => {
   );
 };
 
-
-const SideNavListItemChild = ({ name, id, icon, shrinkSidebar, activeState, setActiveState }) => {
+const SideNavListItemChild = ({
+  name,
+  id,
+  icon,
+  shrinkSidebar,
+  activeState,
+  setActiveState,
+}: SideNavListItemProps) => {
+  const { colors: { unbirdBlue, steele0 } } = themes;
   return (
     <LI key={id} marginAttr={shrinkSidebar && '0 auto'}>
       <Div
@@ -83,11 +121,11 @@ const SideNavListItemChild = ({ name, id, icon, shrinkSidebar, activeState, setA
         }}
       >
         <RenderIf isTrue={!shrinkSidebar}>
-          {icon(activeState === id ? '#18C1E0' : '#778594')}
+          {icon(activeState === id ? unbirdBlue : steele0)}
         </RenderIf>
         <RenderIf isTrue={shrinkSidebar}>
           <ToolTip anchor="RIGHT_CENTER" text={name}>
-            {icon(activeState === id ? '#18C1E0' : '#778594')}
+            {icon(activeState === id ? unbirdBlue : steele0)}
           </ToolTip>
         </RenderIf>
         <Div
@@ -103,7 +141,16 @@ const SideNavListItemChild = ({ name, id, icon, shrinkSidebar, activeState, setA
   );
 };
 
-const SideNavListItem = ({ name, id, icon, header, index, shrinkSidebar, activeState, setActiveState }) => {
+const SideNavListItem = ({
+  name,
+  id,
+  icon,
+  header,
+  index,
+  shrinkSidebar,
+  activeState,
+  setActiveState,
+}: SideNavListItemProps) => {
   if (header) {
     return (
       <SideNavListItemHeader
@@ -134,7 +181,7 @@ const SideNav = ({
   workspaces,
   navList,
   shrinkSidebar,
-}) => {
+}: SideNavProps) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const version = 'v2.0.13';
 

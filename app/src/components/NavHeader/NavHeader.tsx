@@ -1,40 +1,34 @@
 import React from 'react';
 
 import { Div } from 'components/Styles';
-import {
-  Notification,
-  Power,
-  Settings,
-  Shrinker
-} from 'components/Icons';
+import { Notification, Power, Settings, Shrinker } from 'components/Icons';
 import Dropdown from 'components/Dropdown';
 import { Color } from 'lib/themes/interface';
 import RenderIf from 'components/RenderIf';
 import Avatar from 'components/Avatar';
-import { LogoutWrapper, SettingsIconWrapper } from './styles';
+import { Header, LogoutWrapper, SettingsIconWrapper } from './styles';
+
+export interface NavHeader {
+  shrinkSidebar: boolean;
+  setShrinkSidebar: (boolean) => void;
+  setShowUserDropdown: (boolean) => void;
+  showUserDropdown: boolean;
+  userInfo: {
+    email: string;
+    name: string;
+    image?: string;
+  }
+}
 
 const NavHeader = ({
   setShrinkSidebar,
   shrinkSidebar,
   setShowUserDropdown,
   showUserDropdown,
-}: {
-  shrinkSidebar: boolean;
-  setShrinkSidebar: (boolean) => void;
-  setShowUserDropdown: (boolean) => void;
-  showUserDropdown: boolean;
-}) => {
+  userInfo
+}: NavHeader) => {
   return (
-    <header
-      style={{
-        height: 64,
-        borderLeft: 'none',
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
+    <Header>
       <Div
         marginLeft="40px"
         onClick={() => {
@@ -81,12 +75,14 @@ const NavHeader = ({
         >
           <Dropdown
             width="167px"
-            TopComponent={<Avatar
-              src="https://randomuser.me/api/portraits/men/78.jpg"
-              width="32px"
-              initials=""
-              radius="8px"
-            />}
+            TopComponent={
+              <Avatar
+                src={userInfo.image}
+                width="32px"
+                initials=""
+                radius="8px"
+              />
+            }
             top="55px"
             right="-8px"
             minHeight="100px"
@@ -100,8 +96,8 @@ const NavHeader = ({
               lineHeight="16px"
             >
               <Div fontWeight="500">
-                <Div>Lucy Albert</Div>
-                <Div>lucymail@unbird.com</Div>
+                <Div>{userInfo.name}</Div>
+                <Div>{userInfo.email}</Div>
               </Div>
               <SettingsIconWrapper>
                 <Settings width="12" fill="#778594" />
@@ -123,7 +119,7 @@ const NavHeader = ({
           </Dropdown>
         </Div>
       </Div>
-    </header>
+    </Header>
   );
 };
 

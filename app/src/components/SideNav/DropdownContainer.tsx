@@ -16,7 +16,30 @@ interface ICurrentAccount {
   email: string;
 }
 
-export const DropdownContent = ({ shrinkSidebar, currentAccount }) => {
+export interface DropdownContentProps {
+  shrinkSidebar: boolean;
+  currentAccount: ICurrentAccount;
+}
+
+export interface DropdownContainerProps {
+  showDropdown: boolean;
+  setShowDropdown: (boolean) => void;
+  emails: OptionProps[];
+  workspaces: { name: string; icon?: any }[];
+  currentAccount: ICurrentAccount;
+  component: ReactNode;
+}
+
+export interface WorkspaceItemProps {
+  icon: ReactNode;
+  name: string;
+  index: number;
+}
+
+export const DropdownContent = ({
+  shrinkSidebar,
+  currentAccount,
+}: DropdownContentProps) => {
   return (
     <Div
       className="workspace-logo"
@@ -48,14 +71,7 @@ export const DropdownContainer = ({
   workspaces,
   currentAccount,
   component,
-}: {
-  showDropdown: boolean;
-  setShowDropdown: (boolean) => void;
-  emails: OptionProps[];
-  workspaces: { name: string; icon?: any }[];
-  currentAccount: ICurrentAccount;
-  component: any;
-}) => {
+}: DropdownContainerProps) => {
   return (
     <Dropdown TopComponent={component}>
       <CompanyLogoWithUsername
@@ -99,15 +115,7 @@ export const DropdownContainer = ({
   );
 };
 
-const WorkspaceItem = ({
-  icon,
-  name,
-  index,
-}: {
-  icon: ReactNode;
-  name: string;
-  index: number;
-}) => {
+const WorkspaceItem = ({ icon, name, index }: WorkspaceItemProps) => {
   return (
     <WorkspaceItemWrapper>
       <Div

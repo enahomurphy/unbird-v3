@@ -133,7 +133,7 @@ const GlobalStyle = createGlobalStyle`
       font-family: 'Work Sans';
       src: url('WorkSans-Bold.eot');
       src: local('Work Sans Bold'), local('WorkSans-Bold'),
-          url(${assetPath('fonts/WorkSans-Bold.ttf')}) format('truetype');
+          url(${assetPath('fonts/WorkSans-Bold.ttf')}) format('ttf');
       font-weight: bold;
       font-style: normal;
       font-display: swap;
@@ -143,7 +143,7 @@ const GlobalStyle = createGlobalStyle`
       font-family: 'Work Sans';
       src: url('WorkSans-Light.eot');
       src: local('Work Sans Light'), local('WorkSans-Light'),
-          url(${assetPath('fonts/WorkSans-Light.ttf')}) format('truetype');
+          url(${assetPath('fonts/WorkSans-Light.ttf')}) format('ttf');
       font-weight: 300;
       font-style: normal;
       font-display: swap;
@@ -154,7 +154,7 @@ const GlobalStyle = createGlobalStyle`
       src: url('WorkSans-SemiBold.eot');
       src: local('Work Sans SemiBold'), local('WorkSans-SemiBold'),
 
-          url(${assetPath('fonts/WorkSans-SemiBold.ttf')}) format('truetype');
+          url(${assetPath('fonts/WorkSans-SemiBold.ttf')}) format('ttf');
       font-weight: 600;
       font-style: normal;
       font-display: swap;
@@ -163,7 +163,7 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
       font-family: 'Work Sans';
       src: local('Work Sans Regular'), local('WorkSans-Regular'),
-          url(${assetPath('fonts/WorkSans-Regular.ttf')}) format('truetype');
+          url(${assetPath('fonts/WorkSans-Regular.ttf')}) format('ttf');
       font-weight: normal;
       font-style: normal;
       font-display: swap;
@@ -173,7 +173,7 @@ const GlobalStyle = createGlobalStyle`
       font-family: 'Work Sans';
       src: url('WorkSans-Medium.eot');
       src: local('Work Sans Medium'), local('WorkSans-Medium'),
-          url(${assetPath('fonts/WorkSans-Medium.ttf')}) format('truetype');
+          url(${assetPath('fonts/WorkSans-Medium.ttf')}) format('ttf');
       font-weight: 500;
       font-style: normal;
       font-display: swap;

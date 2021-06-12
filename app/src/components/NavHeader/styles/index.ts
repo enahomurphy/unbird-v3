@@ -30,3 +30,12 @@ export const LogoutWrapper = styled.div`
     }
   }
 `;
+
+export const Header = styled.header`
+  height: 64px;
+  border-left: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;

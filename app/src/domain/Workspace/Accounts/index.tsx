@@ -26,6 +26,11 @@ interface ICurrentAccount {
 const Account = () => {
   const [showUserDropdown, setShowUserDropdown] = useState<boolean>(false);
   const [shrinkSidebar, setShrinkSidebar] = useState<boolean>(false);
+  const userInfo = {
+    image: 'https://randomuser.me/api/portraits/men/78.jpg',
+    name: 'Lucy Albert',
+    email: 'lucymail@unbird.com'
+  };
   const [currentAccount] = useState<ICurrentAccount>({
     workspace: 'Unbird',
     email: 'lucymail@unbird.com',
@@ -107,6 +112,7 @@ const Account = () => {
           setShrinkSidebar={setShrinkSidebar}
           showUserDropdown={showUserDropdown}
           shrinkSidebar={shrinkSidebar}
+          userInfo={userInfo}
         />
       </Main>
     </Page>

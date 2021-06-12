@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Color } from 'lib/themes/interface';
+import { Colors, Color } from 'lib/themes/interface';
 
 export interface StyledTextProps {
   color?: Color;

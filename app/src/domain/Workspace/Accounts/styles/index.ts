@@ -32,15 +32,3 @@ export const DropdownWrapper = styled.div<{
   bottom: ${(props) => props.bottom};
   border-radius: 12px;
 `;
-
-export const GreenIndicator = styled.div`
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #12E18A;
-  bottom: -1px;
-  right: -2px;
-  border-radius: 50%;
-  border: 2px solid #FFF;
-`;
