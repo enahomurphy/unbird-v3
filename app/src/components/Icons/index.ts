@@ -62,3 +62,4 @@ export { default as Shrinker } from './Shrinker';
 export { default as Notification } from './Notification';
 export { default as Power } from './Power';
 export { default as Home } from './Home';
+export { default as UnbirdLogo } from './UnbirdLogo';

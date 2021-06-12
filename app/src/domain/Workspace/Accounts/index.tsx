@@ -1,60 +1,22 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
-import {
-  Div, Main, Page
-} from 'components/Styles/Element';
+import { Main, Page } from 'components/Styles';
 import {
   Document,
   Home,
   Inbox,
   Insight,
   Metrics,
-  Notification,
   Plan,
-  Power,
   Settings,
-  Shrinker,
   Scan,
   Tag,
-  Unbird,
+  UnbirdLogo,
 } from 'components/Icons';
-import SideNav from 'components/SideNav';
-import { Color } from 'lib/themes/interface';
+import SideNav, { INavListItemsProps } from 'components/SideNav';
 import { OptionProps } from 'components/Select';
-import RenderIf from 'components/RenderIf';
-import { AsideWrapper, DropdownWrapper } from './styles'
-
-const SettingsIconWrapper = styled.div`
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    background: #D1F3F9;
-    border-radius: 6px;
-    svg > path {
-      fill: #18C1E0;
-    }
-  }
-`;
-
-const LogoutWrapper = styled.div`
-  font-size: 10px;
-  display: flex;
-  margin-left: 16px;
-  margin-top: 7px;
-  font-weight: 400;
-  align-items :center;
-
-  &:hover {
-    svg > path {
-      fill: #F87171;
-    }
-  }
-`;
+import Navheader from 'components/NavHeader';
+import { AsideWrapper } from './styles';
 
 interface ICurrentAccount {
   workspace: string;
@@ -66,29 +28,24 @@ const Account = () => {
   const [shrinkSidebar, setShrinkSidebar] = useState<boolean>(false);
   const [currentAccount] = useState<ICurrentAccount>({
     workspace: 'Unbird',
-    email: 'lucymail@unbird.com'
+    email: 'lucymail@unbird.com',
   });
   const [emails] = useState<OptionProps[]>([
     { label: 'lucymail@unbird.com', value: 'lucymail@unbird.com' },
     { label: 'jane@doe.com', value: 'jane@doe.com' },
   ]);
-  const [workspaces] = useState<{ name: string, icon?: any }[]>([
-    { name: 'Unbird', icon: <Unbird
-      width="40"
-      height="22"
-      viewBoxWidth="12"
-      viewBoxHeight="33"
-    /> },
+  const [workspaces] = useState<{ name: string; icon?: any }[]>([
+    { name: 'Unbird', icon: <UnbirdLogo width="14" viewBoxHeight="22" /> },
     { name: 'Ping Pong' },
     { name: 'Tsache & Tsache' },
   ]);
 
-  const navList = [
+  const navList: INavListItemsProps[] = [
     {
       name: 'OVERVIEW',
       items: [
         {
-          name: 'DashBoard',
+          name: 'Dashboard',
           id: 'dashboard',
           icon: (fill) => <Home fill={fill} />,
         },
@@ -153,111 +110,6 @@ const Account = () => {
         />
       </Main>
     </Page>
-  );
-};
-
-const Navheader = ({
-  setShrinkSidebar,
-  shrinkSidebar,
-  setShowUserDropdown,
-  showUserDropdown,
-}: {
-  shrinkSidebar: boolean;
-  setShrinkSidebar: (boolean) => void;
-  setShowUserDropdown: (boolean) => void;
-  showUserDropdown: boolean;
-}) => {
-  return (
-    <header
-      style={{
-        height: 64,
-        borderLeft: 'none',
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
-      <Div
-        marginLeft="40px"
-        onClick={() => {
-          setShrinkSidebar(!shrinkSidebar);
-        }}
-        cursor="pointer"
-      >
-        <Shrinker />
-      </Div>
-      <Div display="flex">
-        <Div position="relative" marginTop="10px">
-          <Div>
-            <Notification />
-          </Div>
-          <RenderIf isTrue={true}>
-            <Div
-              position="absolute"
-              width="24px"
-              height="24px"
-              background="#FEE3E3"
-              top="-15px"
-              left="8px"
-              borderRadius="8px"
-              fontSize="12px"
-              fontWeight="700"
-              padding="6px 5px"
-              color={Color.red0}
-            >
-              12
-            </Div>
-          </RenderIf>
-        </Div>
-        <Div
-          width="32px"
-          height="32px"
-          borderRadius="8px"
-          backgroundColor="#F2CC78"
-          padding="8px 10px"
-          marginRight="24px"
-          marginLeft="31px"
-          position="relative"
-          cursor="pointer"
-          onClick={() => {
-            setShowUserDropdown(!showUserDropdown);
-          }}
-        >
-          U
-          <DropdownWrapper width="167px" showDropdown={showUserDropdown} top="55px" right="-8px" minHeight="100px">
-            <Div
-              display="flex"
-              fontSize="10px"
-              padding="16px"
-              justifyContent="space-between"
-              lineHeight="16px"
-            >
-              <Div fontWeight="500">
-                <Div>Lucy Albert</Div>
-                <Div>lucymail@unbird.com</Div>
-              </Div>
-              <SettingsIconWrapper>
-                <Settings width="12" fill="#778594" />
-              </SettingsIconWrapper>
-            </Div>
-            <hr
-              style={{
-                border: '.5px solid #DADDE0',
-                transform: 'scaleY(0.5)',
-                margin: 0,
-              }}
-            />
-            <LogoutWrapper>
-              <Power />
-              <Div marginLeft="11px" lineHeight="16px" marginTop="2px">
-                Log out
-              </Div>
-            </LogoutWrapper>
-          </DropdownWrapper>
-        </Div>
-      </Div>
-    </header>
   );
 };
 

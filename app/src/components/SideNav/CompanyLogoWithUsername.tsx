@@ -2,21 +2,26 @@ import React from 'react';
 
 import { Div, Span } from 'components/Styles';
 import CapitalizeFirstLetter from 'lib/utils/capitalizeAndReturnFirstLetter';
+import Avatar from 'components/Avatar';
 
 interface ICurrentAccount {
   workspace: string;
   email: string;
 }
 
+export interface CompanyLogoWithUsernameProps {
+  showDropdown: boolean;
+  setShowDropdown: (boolean) => void;
+  currentAccount: ICurrentAccount;
+  src?: string;
+}
+
 const CompanyLogoWithUsername = ({
   showDropdown,
   setShowDropdown,
-  currentAccount
-}: {
-  showDropdown: boolean;
-  setShowDropdown: (boolean) => void;
-  currentAccount: ICurrentAccount
-}) => {
+  currentAccount,
+  src
+}: CompanyLogoWithUsernameProps) => {
   return (
     <Div
       className="user-logo"
@@ -29,15 +34,17 @@ const CompanyLogoWithUsername = ({
       }}
     >
       <Div
-        width="32px"
-        height="32px"
-        borderRadius="8px"
-        backgroundColor="#F2CC78"
-        padding="8px 10px"
         marginRight="10px"
       >
-        {CapitalizeFirstLetter(currentAccount.workspace)}
-      </Div>
+        <Avatar
+          src={src}
+          width="32px"
+          initials={CapitalizeFirstLetter(currentAccount.email)}
+          radius="8px"
+          css={{ fontWeight: 400 }}
+
+        />
+        </Div>
       <Div
         display="flex"
         flexDirection="column"
@@ -49,6 +56,10 @@ const CompanyLogoWithUsername = ({
       </Div>
     </Div>
   );
+};
+
+CompanyLogoWithUsername.defaultProps = {
+  src: 'https://randomuser.me/api/portraits/men/78.jpg'
 };
 
 export default CompanyLogoWithUsername;
