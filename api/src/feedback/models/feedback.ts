@@ -1,9 +1,15 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { Field, Float, Int, ObjectType } from '@nestjs/graphql';
 import { FeedbackStatus } from 'src/core/types/enums/feeback-status.enum';
+import { FeedbackProperties } from '../dtos';
 
 @ObjectType()
-@Table({ modelName: 'feedback', timestamps: false, updatedAt: false })
+@Table({
+  modelName: 'feedback',
+  timestamps: false,
+  updatedAt: false,
+  tableName: 'feedback',
+})
 export class Feedback extends Model {
   @Field(() => Int, { nullable: true })
   id?: string;
@@ -75,12 +81,12 @@ export class Feedback extends Model {
   })
   externalId?: string;
 
-  @Field(() => String, { nullable: true })
+  @Field(() => FeedbackProperties, { nullable: true, defaultValue: [] })
   @Column({
     type: DataType.JSONB,
     field: 'properties',
   })
-  properties?: string;
+  properties?: FeedbackProperties;
 
   @Field(() => Date, { nullable: true })
   @Column({
