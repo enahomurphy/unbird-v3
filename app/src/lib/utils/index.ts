@@ -5,3 +5,4 @@ export * from './route';
 export * from './asset';
 export * from './toaster';
 export * from './download';
+export * from './capitalizeAndReturnFirstLetter';

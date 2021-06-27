@@ -29,6 +29,7 @@ export interface Colors {
   greenTint500: string;
   steele0: string;
   midnight0: string;
+  red0: string;
 }
 
 export enum Color {
@@ -61,7 +62,8 @@ export enum Color {
   pinkTint200 = 'pinkTint200',
   greenTint500 = 'greenTint500',
   steele0 = '#778594',
-  midnight0 = '#213245'
+  midnight0 = '#213245',
+  red0 = '#DB2424'
 }
 
 export default Colors;

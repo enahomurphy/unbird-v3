@@ -3,6 +3,7 @@ import React, { Dispatch } from 'react';
 import { Div } from 'components/Styles';
 import { Button } from 'components/Buttons';
 import { IViewHolder } from '../interfaces';
+import { ArrowLeft, ArrowRight } from 'components/Icons';
 
 interface IViewSlider {
   children: React.ReactNode;
@@ -50,7 +51,7 @@ const ViewSlider = ({ children, viewHolder, setView, isActiveNextPrevButtons }: 
         height="35px"
         color="#74787E"
       >
-        {'< Prev'}
+        <ArrowLeft /> {'Prev'}
       </Button>
       <Button
         visibility={
@@ -67,7 +68,7 @@ const ViewSlider = ({ children, viewHolder, setView, isActiveNextPrevButtons }: 
         borderRadius="8px"
         color="#74787E"
       >
-        {'Next >'}
+        {'Next'} <ArrowRight />
       </Button>
     </Div>
     {children}

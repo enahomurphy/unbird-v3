@@ -3,15 +3,22 @@ import React, { FC, ReactElement } from 'react';
 interface Props {
   width?: string;
   height?: string;
+  viewBoxWidth?: string;
+  viewBoxHeight?: string;
   fill?: string;
 }
 
-const Unbird: FC<Props> = (): ReactElement => {
+const Unbird: FC<Props> = ({
+  width = '104',
+  height = '21',
+  viewBoxWidth = '104',
+  viewBoxHeight = '21'
+}): ReactElement => {
   return (
     <svg
-      width="104"
-      height="21"
-      viewBox="0 0 104 21"
+      width={width}
+      height={height}
+      viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

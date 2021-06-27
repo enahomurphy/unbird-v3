@@ -10,6 +10,7 @@ export interface AvatarProps {
   fontSize?: string;
   initials: string;
   autoPlay?: boolean;
+  backgroundColor?: string;
 }
 
 const Avatar: FC<AvatarProps> = ({
@@ -19,6 +20,7 @@ const Avatar: FC<AvatarProps> = ({
   fontSize,
   initials,
   autoPlay,
+  backgroundColor,
 }): ReactElement => (
   <Div width="fit-content">
     {src ? (
@@ -42,7 +44,7 @@ const Avatar: FC<AvatarProps> = ({
         width={width}
         height={width}
         borderRadius={radius}
-        backgroundColor={Color.yellow}
+        backgroundColor={backgroundColor}
         textAlign="center"
         margin="auto 0px"
         display="flex"
@@ -52,7 +54,7 @@ const Avatar: FC<AvatarProps> = ({
         <P
           textTransform="capitalize"
           fontSize={fontSize}
-          fontWeight="700"
+          fontWeight="400"
           color={Color.licorice}
         >
           {initials}
@@ -68,6 +70,7 @@ Avatar.defaultProps = {
   width: '24px',
   fontSize: '16px',
   autoPlay: true,
+  backgroundColor: '#F2CC78'
 };
 
 export default Avatar;

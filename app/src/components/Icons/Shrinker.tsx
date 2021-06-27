@@ -3,29 +3,33 @@ import React, { FC, ReactElement } from 'react';
 interface Props {
   width?: string;
   height?: string;
+  viewBoxWidth?: string;
+  viewBoxHeight?: string;
   fill?: string;
 }
 
-const ArrowRight: FC<Props> = ({
-  width = '13',
-  height = '14',
+const Shrinker: FC<Props> = ({
+  width = '18',
+  height = '12',
+  viewBoxWidth = '18',
+  viewBoxHeight = '12',
   fill = '#778594',
 }): ReactElement => {
   return (
     <svg
       width={width}
       height={height}
-      viewBox={`0 0 ${width} ${height}`}
+      viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M5.65674 1L11.3136 6.65685L5.65674 12.3137"
+        d="M11.9999 1L1 1M17 6.25806H1M17 11.5H1"
         stroke={fill}
-        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   );
 };
 
-export default ArrowRight;
+export default Shrinker;

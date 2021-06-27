@@ -14,7 +14,6 @@ import { Div } from 'components/Styles';
 import 'react-toastify/dist/ReactToastify.css';
 import 'lib/i18n';
 import UnbirdRouter from './router';
-import Unbird from 'components/Icons/Unbird';
 
 const App: FC = ({ children }): ReactElement => {
   return (

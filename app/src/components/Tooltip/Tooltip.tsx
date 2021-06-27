@@ -26,7 +26,7 @@ const Tooltip: FC<TooltipProps> = ({
     <ToggleLayer
       isOpen={show}
       fixed
-      placement={{ anchor, autoAdjust: true, triggerOffset: 4 }}
+      placement={{ anchor, autoAdjust: true, triggerOffset: 29 }}
       renderLayer={({
         isOpen,
         layerProps,

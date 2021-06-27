@@ -1,3 +1,4 @@
+
 import React, { FC, ReactElement } from 'react';
 
 interface Props {
@@ -6,10 +7,10 @@ interface Props {
   fill?: string;
 }
 
-const ArrowRight: FC<Props> = ({
-  width = '13',
-  height = '14',
-  fill = '#778594',
+const ArrowLeft: FC<Props> = ({
+  width = '14',
+  height = '13',
+  fill = 'white',
 }): ReactElement => {
   return (
     <svg
@@ -20,12 +21,13 @@ const ArrowRight: FC<Props> = ({
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M5.65674 1L11.3136 6.65685L5.65674 12.3137"
-        stroke={fill}
+        d="M7.65674 1L1.99988 6.65685L7.65674 12.3137"
+        stroke="#B5BBC1"
         strokeWidth="1.5"
+        fill={fill}
       />
     </svg>
   );
 };
 
-export default ArrowRight;
+export default ArrowLeft;
